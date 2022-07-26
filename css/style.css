@@ -1,12 +1,13 @@
 
 #gamePanel {
     height: 500px;
-    width: 500px;
+    width: 490px;
     background-color: white;
     border: 10px solid gray;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
+    border-radius: 5%;
 }
 
 

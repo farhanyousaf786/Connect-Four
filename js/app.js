@@ -38,9 +38,6 @@ function setInitialAttributes() {
     //insert a number into traking array which will be
     // eual to the total # of rows in panel
 
-
-
-
     document.body.style.textAlign = "center";
 
     var title = document.createElement("h1");
@@ -57,12 +54,6 @@ function setInitialAttributes() {
 
     document.body.appendChild(winner);
 
-
-
-
-
-
-
     var panel = document.createElement('div');
 
     panel.id = "gamePanel";
@@ -73,7 +64,7 @@ function setInitialAttributes() {
 
 
 
-
+    //  these attributes are used to create the title element
     var cpText = document.createElement("div");
 
     cpText.id = "c-p-t";
@@ -82,15 +73,16 @@ function setInitialAttributes() {
 
     document.body.appendChild(cpText);
 
-    var cpEl = document.getElementById("c-p-t").style.color = 'blue';
+    document.getElementById("c-p-t").style.color = 'blue';
 
 
 
+
+    //  these attributes are used to create color BOX
 
     var cpColor = document.createElement("div");
 
     cpColor.id = "c-p";
-
 
     cpColor.innerText.backgroundColor = "white";
 
@@ -98,6 +90,7 @@ function setInitialAttributes() {
 
 
 
+    // this loop is to push tracking array
 
     for (var i = 0; i <= columnToTrack; i++) {
 
