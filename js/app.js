@@ -1,193 +1,200 @@
-const squares = document.querySelectorAll('.grid div')
+var isWinner = false;    // varible that will trigger to true as we find our winner
 
-const result = document.querySelector('#result')
+let emptyCircle = [];    // we will fill this array with "empty" string and leter append it into gamepanel
 
-const displayCurrentPlayer = document.querySelector('#current-player')
+var gamePanel = [];      // this is an array of gamePanel[row][column], this will initialize with "emptyCircle"
 
-let currentPlayer = 1
+var rows = 7;          // no. of rows
 
+var columns = 7;       // no. of columns
 
+var columnToTrack = rows - 1;     // no of tracks, this will help us to set initl Attributes to track filled columns or rows
 
-for (let i = 0; i < squares.length; i++) {
+var traking = [];      // we will set it value to total no of rows so we can check if triggers row is filled or not
 
-
-
-
-    squares[i].onclick = () => {
-
-        // if the squre beow your current squre is taken, you can go ontop of it
+var currentPlayer = "blue";     // first entry will go for blue
 
 
-        if (squares[i + 7].classList.contains('taken')) {
+//init is a defual function that run when screen load.
+//The inner functions in init are the functionswhich control
+//our defual values like # of columns or empty 2d array
+//along with empty circles.
 
-            if (currentPlayer == 1) {
+function init() {
+
+    setInitialAttributes();
+
+    setEmptyCirclesForJS();
+
+    setEmptyPanelForHtml();
+
+}
 
 
-                squares[i].classList.add('taken')
 
-                squares[i].classList.add('player-one')
-
-                currentPlayer = 2
-
-                displayCurrentPlayer.innerHTML = currentPlayer
+function setInitialAttributes() {
 
 
-            } else if (currentPlayer == 2) {
+    //insert a number into traking array which will be
+    // eual to the total # of rows in panel
+    for (var i = 0; i <= columnToTrack; i++) {
+
+        traking.push(columnToTrack);
+
+    }
 
 
-                squares[i].classList.add('taken')
+    document.body.style.textAlign = "center";
 
-                squares[i].classList.add('player_two')
+    var title = document.createElement("h1");
 
-                currentPlayer = 1
+    title.id = "Connect4";
 
-                displayCurrentPlayer.innerHTML = currentPlayer
+    title.innerText = "Connect Four";
 
-            } else {
+    document.body.appendChild(title);
 
-                alert('Can not go there..!!')
+    var winner = document.createElement("h2");
 
-            }
+    winner.id = "winner";
+
+    document.body.appendChild(winner);
+
+
+    var panel = document.createElement('div');
+
+    panel.id = "gamePanel";
+
+    document.body.appendChild(panel);
+
+}
+
+
+
+// set an empty entry in 2d array and then push each entry row in gamePanel 
+function setEmptyCirclesForJS() {
+
+    for (let row = 0; row < rows; row++) {
+
+        emptyCircle = [];
+
+        for (let column = 0; column < columns; column++) {
+
+
+            emptyCircle[column] = "empty";
         }
 
+        gamePanel.push(emptyCircle);
+
+    }
+
+
+}
+
+
+//  this is the most important function of the projec
+// this function allow us to make 2d array and make 
+// 2d empty circles with colors. then these circless
+// are given class name "cricle" and id the curretn
+// entry of 2d array then insert these circles to our
+// emoty gamePanel[row][column]. then make an action 
+// listner for each entry of that array.
+
+function setEmptyPanelForHtml() {
+
+    for (let row = 0; row < rows; row++) {
+
+        for (let column = 0; column < columns; column++) {
+
+            let initialCircle = document.createElement("div");
+
+            initialCircle.id = row.toString() + column.toString();
+
+            initialCircle.classList.add("circle");
+
+            document.getElementById("gamePanel").append(initialCircle);
+
+
+            // this function will track every click on every cirlce 
+            // after click on circle we will update the circle position
+            // if it is valid. after update the circle position will be updated
+            // the tracking array and remove our row from that column so when
+            // next click on circle happens we can track if it is already filled 
+            // or not
+
+            initialCircle.addEventListener("click", function () {
+
+                let trackers = this.id;
+
+                let row = parseInt(trackers.charAt(0));
+
+                let column = parseInt(trackers.charAt(1));
+
+                row = traking[column];
+
+                traking[column] < 0 ? invalidEntry() : null;
+
+                let tile = document.getElementById(row.toString() + column.toString());
+
+
+                // after the click if the user is red then we will update circle with red color
+                // otherwise we will update circle with blue color.
+                currentPlayer == "red" ? setRedEntry(row, column, tile) : setBlueEntry(row, column, tile);
+
+                row--;
+
+                traking[column] = row;
+
+
+            }, false);
+
+        }
 
     }
 
 }
 
-function createTitleText() {
-
-    let txt = document.getElementById("players");
-
-    txt.style.textAlign = "center";
-
-    console.log(txt.innerText)
-
-
-}
 
 
 
+// to update circle with red color
+function setRedEntry(row, column, tile) {
 
-const container = document.getElementById("container");
+    gamePanel[row][column] = "red";
 
+    tile.classList.add(gamePanel[row][column]);
 
+    tile.style.backgroundColor = " #fe0000"
 
- container.style.alignContent = "center";
-
-function makeRows(rows, cols) {
-
-    container.style.setProperty('--grid-rows', rows);
-
-    container.style.setProperty('--grid-cols', cols);
-
-    for (c = 0; c < (rows * cols); c++) {
-
-        let cell = document.createElement("div");
-
-       // cell.innerText = (c + 1);
-
-
-        container.appendChild(cell).className = "grid-item";
-
-     
-        cell.onclick = () => {
-
-            console.log("Grid Item Clicked " + cell);
-
-            cell.style.backgroundColor = "#AA0000"
-
-
-
-        }
-    };
-};
-
-
-
-
-initFuntion();
-
-function initFuntion() {
-
-    createTitleText();
-    makeRows(7, 7);
+    currentPlayer = "blue";
 
 
 }
 
 
+// to update circle with blue color
+function setBlueEntry(row, column, tile) {
+
+    gamePanel[row][column] = "blue";
+
+    tile.classList.add(gamePanel[row][column]);
+
+    tile.style.backgroundColor = "#0003df "
+
+
+    currentPlayer = "red";
+
+}
+
+
+// to check invalidEntry
+function invalidEntry() {
+
+
+    return alert("This slot is already taken!");
+
+}
 
 
 
-// function createTable() {
-
-
-
-//     var myTableDiv = document.getElementById("gameBox");
-
-
-//     myTableDiv.style.justifyContent = "center";
-
-//     myTableDiv.style.display = "flex";
-
-//     var table = document.createElement('table');
-
-
-
-//     table.border = '1';
-
-//     table.style.textAlign = 'center';
-
-//     var tableBody = document.createElement('tableBody');
-
-
-
-//     table.appendChild(tableBody);
-
-
-
-//     for (var i = 0; i < 7; i++) {
-
-//         var tr = document.createElement('TR');
-
-
-//         tableBody.appendChild(tr);
-
-//         for (var j = 0; j < 7; j++) {
-
-//             var td = document.createElement('TD');
-
-//             td.width = '50';
-
-//             td.height = '30';
-
-
-//             td.style.backgroundColor = "#AA0000";
-
-//             td.onclick = function () {
-
-//                // console.log(i);
-//             }
-
-
-//             // td.style.backgroundColor = "#AA0000";
-
-//             // td.appendChild(document.createTextNode("Cell " + i + "," + j));
-
-//             tr.appendChild(td);
-
-
-//         }
-
-
-//     }
-
-//     myTableDiv.appendChild(table);
-
-// }
-
-
-
-
-
+init();

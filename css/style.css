@@ -1,23 +1,24 @@
-:root {
-    --grid-cols: 1;
-    --grid-rows: 1;
-  }
-  
-  #container {
-    display: inline-grid;
-    padding: 5%;
-    grid-template-rows: repeat(var(--grid-rows), 1fr);
-    grid-template-columns: repeat(var(--grid-cols), 1fr);
-    
-  }
-  
-  
 
-  .grid-item {
-    border: 1px solid #ddd;
-    text-align: center;
-    height:50px;
-    width:50px;
-    
-    
-  }
+
+
+#gamePanel {
+    height: 500px;
+    width: 500px;
+    background-color: white;
+    border: 10px solid gray;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+
+.circle {
+    height: 50px;
+    width: 50px;
+    margin: 5px;
+    background-color: white;
+    border-radius: 50%;
+    border: 5px solid navy;
+}
+
