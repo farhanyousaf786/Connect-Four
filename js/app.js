@@ -37,11 +37,8 @@ function setInitialAttributes() {
 
     //insert a number into traking array which will be
     // eual to the total # of rows in panel
-    for (var i = 0; i <= columnToTrack; i++) {
 
-        traking.push(columnToTrack);
 
-    }
 
 
     document.body.style.textAlign = "center";
@@ -61,11 +58,52 @@ function setInitialAttributes() {
     document.body.appendChild(winner);
 
 
+
+
+
+
+
     var panel = document.createElement('div');
 
     panel.id = "gamePanel";
 
     document.body.appendChild(panel);
+
+
+
+
+
+
+    var cpText = document.createElement("div");
+
+    cpText.id = "c-p-t";
+
+    cpText.innerText = "Blue's Turn";
+
+    document.body.appendChild(cpText);
+
+    var cpEl = document.getElementById("c-p-t").style.color = 'blue';
+
+
+
+
+    var cpColor = document.createElement("div");
+
+    cpColor.id = "c-p";
+
+
+    cpColor.innerText.backgroundColor = "white";
+
+    document.body.appendChild(cpColor);
+
+
+
+
+    for (var i = 0; i <= columnToTrack; i++) {
+
+        traking.push(columnToTrack);
+
+    }
 
 }
 
@@ -160,13 +198,26 @@ function setEmptyPanelForHtml() {
 // to update circle with red color
 function setRedEntry(row, column, tile) {
 
+    var cpEl = document.getElementById("c-p-t");
+
+    cpEl.style.color = 'blue'
+
+    cpEl.innerText = "Blue's Turn";
+
+
+
     gamePanel[row][column] = "red";
 
     tile.classList.add(gamePanel[row][column]);
 
-    tile.style.backgroundColor = " #fe0000"
+    tile.style.backgroundColor = "#fe0000"
 
     currentPlayer = "blue";
+
+
+    var cpColor = document.getElementById("c-p");
+
+    cpColor.style.backgroundColor = "#0003df";
 
 
 }
@@ -175,14 +226,33 @@ function setRedEntry(row, column, tile) {
 // to update circle with blue color
 function setBlueEntry(row, column, tile) {
 
+
+    var cpEl = document.getElementById("c-p-t");
+
+    cpEl.style.color = 'red';
+
+    cpEl.innerText = "Red's Turn";
+
+
+
+
+
     gamePanel[row][column] = "blue";
 
     tile.classList.add(gamePanel[row][column]);
 
-    tile.style.backgroundColor = "#0003df "
-
+    tile.style.backgroundColor = "#0003df ";
 
     currentPlayer = "red";
+
+    var cpColor = document.getElementById("c-p");
+
+    cpColor.style.backgroundColor = "#fe0000";
+
+
+
+
+
 
 }
 
