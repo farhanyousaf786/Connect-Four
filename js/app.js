@@ -70,18 +70,6 @@ function setInitialAttributes() {
     sidebar.id = "sidebar";
 
 
-    const cpText = document.createElement("div");
-
-    cpText.id = "c-p-t";
-
-    cpText.innerText = "Blue's Turn";
-
-    document.body.appendChild(cpText);
-
-    document.getElementById("c-p-t").style.color = 'blue';
-
-
-
 
     //  these attributes are used to create color BOX
 
@@ -95,13 +83,28 @@ function setInitialAttributes() {
     document.body.appendChild(cpColor);
 
 
+    //
+    
+    const cpText = document.createElement("div");
+
+    cpText.id = "c-p-t";
+
+    cpText.innerText = "Blue's Turn";
+
+    cpText.style.fontSize = "20px";
+
+    document.body.appendChild(cpText);
+
+    document.getElementById("c-p-t").style.color = 'blue';
 
 
     const col2 = document.getElementById("col2");
 
-    col2.appendChild(cpText);
 
     col2.appendChild(cpColor);
+
+    col2.appendChild(cpText);
+
 
 
 
