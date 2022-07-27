@@ -40,31 +40,32 @@ function setInitialAttributes() {
 
     document.body.style.textAlign = "center";
 
-    var title = document.createElement("h1");
-
-    title.id = "Connect4";
-
-    title.innerText = "Connect Four";
-
-    document.body.appendChild(title);
-
     var winner = document.createElement("h2");
 
     winner.id = "winner";
 
     document.body.appendChild(winner);
 
+
     var panel = document.createElement('div');
 
     panel.id = "gamePanel";
 
-    document.body.appendChild(panel);
+    var col1 = document.getElementById("col1");
+
+    col1.appendChild(panel);
 
 
 
 
 
     //  these attributes are used to create the title element
+
+    var sidebar = document.createElement("div");
+
+    sidebar.id = "sidebar";
+
+
     var cpText = document.createElement("div");
 
     cpText.id = "c-p-t";
@@ -87,6 +88,14 @@ function setInitialAttributes() {
     cpColor.innerText.backgroundColor = "white";
 
     document.body.appendChild(cpColor);
+
+
+
+    var col2 = document.getElementById("col2");
+
+    col2.appendChild(cpText);
+
+    col2.appendChild(cpColor);
 
 
 
