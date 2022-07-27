@@ -91,6 +91,7 @@ function setInitialAttributes() {
 
     cpColor.innerText.backgroundColor = "white";
 
+
     document.body.appendChild(cpColor);
 
 

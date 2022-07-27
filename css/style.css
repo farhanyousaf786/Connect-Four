@@ -23,11 +23,11 @@
 
 
 #c-p {
-    height: 50px;
+    height: 100px;
     width: 100px;
     margin: 5px;
     background-color: white;
-    border-radius: 5%;
+    border-radius: 50%;
     border: 3px solid black;
     background-color: blue;
     margin: 0 auto;
@@ -38,18 +38,30 @@
 #table {
 
     margin: auto;
+    padding-left: 13%;
 
 }
 
 #col1 {
 
-    border: 1px solid black;
+    /* border: 1px solid black; */
 
 }
 
 #col2 {
+    width: 200px;
 
-    border: 1px solid black;
+    /* border: 1px solid black; */
+
+    padding-left: 10%;
+
+
+}
+
+
+#logoImage{
+
+    margin: 1%;
 
 
 }
