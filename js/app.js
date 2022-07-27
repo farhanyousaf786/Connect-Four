@@ -130,6 +130,10 @@ function setEmptyCirclesForJS() {
 
         gamePanel.push(emptyCircle);
 
+        console.log("GamePanel: " + gamePanel);
+        console.log("GamePanel: " + gamePanel.length);
+
+
     }
 
 
@@ -243,6 +247,8 @@ function setRedEntry(row, column, circularBox) {
 
     gamePanel[row][column] = "red";
 
+    console.log("GamePanel: " + gamePanel);
+
     circularBox.classList.add(gamePanel[row][column]);
 
     circularBox.style.backgroundColor = "#fe0000"
@@ -265,6 +271,8 @@ function setBlueEntry(row, column, circularBox) {
     var cpEl = document.getElementById("c-p-t");
 
     cpEl.style.color = 'red';
+    console.log("GamePanel: " + gamePanel);
+
 
     cpEl.innerText = "Red's Turn";
 
@@ -288,7 +296,6 @@ function setBlueEntry(row, column, circularBox) {
 }
 
 
-// to check invalidEntry
 function invalidEntry() {
 
 
@@ -309,8 +316,9 @@ function checkHorizontally() {
 
             if (gamePanel[r][c] != 'empty') {
 
+                var col1 = c, col2 = c + 1, col3 = c + 2, col4 = c + 3;
 
-                if (gamePanel[r][c] == gamePanel[r][c + 1] && gamePanel[r][c + 1] == gamePanel[r][c + 2] && gamePanel[r][c + 2] == gamePanel[r][c + 3]) {
+                if (gamePanel[r][col1] == gamePanel[r][col2] && gamePanel[r][col2] == gamePanel[r][col3] && gamePanel[r][col3] == gamePanel[r][col4]) {
 
                     matchedRow = r;
 
@@ -337,7 +345,11 @@ function checkVertically() {
     for (let c = 0; c < columns; c++) {
         for (let r = 0; r < rows - 3; r++) {
             if (gamePanel[r][c] != 'empty') {
-                if (gamePanel[r][c] == gamePanel[r + 1][c] && gamePanel[r + 1][c] == gamePanel[r + 2][c] && gamePanel[r + 2][c] == gamePanel[r + 3][c]) {
+
+
+                var row1 = r, row2 = r + 1, row3 = r + 2, row4 = r + 3;
+
+                if (gamePanel[row1][c] == gamePanel[row2][c] && gamePanel[row2][c] == gamePanel[row3][c] && gamePanel[row3][c] == gamePanel[row4][c]) {
 
                     matchedRow = r;
                     matchedCol = c;
@@ -357,7 +369,14 @@ function checkDiagonally() {
     for (let r = 3; r < rows; r++) {
         for (let c = 0; c < columns - 3; c++) {
             if (gamePanel[r][c] != 'empty') {
-                if (gamePanel[r][c] == gamePanel[r - 1][c + 1] && gamePanel[r - 1][c + 1] == gamePanel[r - 2][c + 2] && gamePanel[r - 2][c + 2] == gamePanel[r - 3][c + 3]) {
+
+                var col1 = c, col2 = c + 1, col3 = c + 2, col4 = c + 3;
+                var row1 = r, row2 = r - 1, row3 = r - 2, row4 = r - 3;
+
+
+                if (gamePanel[row1][col1] == gamePanel[row2][col2] && gamePanel[row2][col2] == gamePanel[row3][col3] && gamePanel[row3][col3] == gamePanel[row4][col4]) {
+
+
 
                     matchedRow = r;
                     matchedCol = c;
@@ -385,13 +404,15 @@ function checkReversDiagonally() {
         for (let c = 0; c < 4; c++) {
 
             if (gamePanel[r][c] != 'empty') {
+                var col1 = c, col2 = c + 1, col3 = c + 2, col4 = c + 3;
+                var row1 = r, row2 = r + 1, row3 = r + 2, row4 = r + 3;
 
-
-                if (gamePanel[r][c] == gamePanel[r + 1][c + 1] && gamePanel[r + 1][c + 1] == gamePanel[r + 2][c + 2] && gamePanel[r + 2][c + 2] == gamePanel[r + 3][c + 3]) {
+                if (gamePanel[row1][col1] == gamePanel[row2][col2] && gamePanel[row2][col2] == gamePanel[row3][col3] && gamePanel[row3][col3] == gamePanel[row4][col4]) {
 
                     matchedRow = r;
 
                     matchedCol = c;
+                    console.log("GamePanel: " + gamePanel[r][c]);
 
                     console.log("checkReversDiagonally")
 
