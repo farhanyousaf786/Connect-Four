@@ -30,7 +30,7 @@ function init() {
 
     setEmptyCirclesForJS();
 
-    setEmptyPanelForHtml();
+    setAndListenEmptyCircle();
 
 }
 
@@ -150,7 +150,7 @@ function setEmptyCirclesForJS() {
 // emoty gamePanel[row][column]. then make an action 
 // listner for each entry of that array.
 
-function setEmptyPanelForHtml() {
+function setAndListenEmptyCircle() {
 
     for (let row = 0; row < rows; row++) {
 
@@ -164,80 +164,9 @@ function setEmptyPanelForHtml() {
 
             document.getElementById("gamePanel").append(initialCircle);
 
-
-            // this function will track every click on every cirlce 
-            // after click on circle we will update the circle position
-            // if it is valid. after update the circle position will be updated
-            // the tracking array and remove our row from that column so when
-            // next click on circle happens we can track if it is already filled 
-            // or not
-
-
-
-            // initialCircle.addEventListener("click", function () {
-
-
-
-            //     while (isWinner) {
-
-            //         return alert("Game eneded!");
-
-            //     }
-
-
-            //     let trackLocation = initialCircle.id;
-
-            //     let row = parseInt(trackLocation.charAt(0));
-
-            //     let column = parseInt(trackLocation.charAt(1));
-
-            //     row = traking[column];
-
-            //     row < 0 ? invalidEntry() : null;
-
-            //     let circularBox = document.getElementById(row.toString() + column.toString());
-
-
-            //     // after the click if the user is red then we will update circle with red color
-            //     // otherwise we will update circle with blue color.
-            //     currentPlayer == "red" ? setRedEntry(row, column, circularBox) : setBlueEntry(row, column, circularBox);
-
-            //     row--;
-
-            //     traking[column] = row;
-
-
-            //     if (checkDiagonally() == true ||
-            //         checkReversDiagonally() == true ||
-            //         checkHorizontally() == true ||
-            //         checkVertically() == true) {
-
-            //         let winner = document.getElementById("winner");
-
-            //         if (gamePanel[matchedRow][matchedCol] == "red") {
-            //             winner.innerText = "Red Wins";
-            //         } else {
-            //             winner.innerText = "Blue Wins";
-            //         }
-            //         isWinner = true;
-            //         return alert("Game eneded!");
-
-            //     }
-
-
-            // }, false);
-
         }
 
     }
-
-          // this function will track every click on every cirlce 
-            // after click on circle we will update the circle position
-            // if it is valid. after update the circle position will be updated
-            // the tracking array and remove our row from that column so when
-            // next click on circle happens we can track if it is already filled 
-            // or not
-
 
 
     while (isWinner) {
@@ -256,11 +185,12 @@ function setEmptyPanelForHtml() {
         let row = e.target.id.charAt(0);
 
         let column = e.target.id.charAt(1);
+
         row = traking[column];
 
         row < 0 ? invalidEntry() : null;
 
-        let circularBox = document.getElementById(row.toString() + column.toString());
+        const circularBox = document.getElementById(row.toString() + column.toString());
 
 
         // after the click if the user is red then we will update circle with red color
@@ -280,11 +210,18 @@ function setEmptyPanelForHtml() {
             let winner = document.getElementById("winner");
 
             if (gamePanel[matchedRow][matchedCol] == "red") {
+
                 winner.innerText = "Red Wins";
+
+
             } else {
+
                 winner.innerText = "Blue Wins";
+
             }
+
             isWinner = true;
+
             return alert("Game eneded!");
 
         }
@@ -302,7 +239,7 @@ function setEmptyPanelForHtml() {
 // to update circle with red color
 function setRedEntry(row, column, circularBox) {
 
-    var cpEl = document.getElementById("c-p-t");
+    const cpEl = document.getElementById("c-p-t");
 
     cpEl.style.color = 'blue'
 
@@ -319,7 +256,7 @@ function setRedEntry(row, column, circularBox) {
     currentPlayer = "blue";
 
 
-    var cpColor = document.getElementById("c-p");
+    const cpColor = document.getElementById("c-p");
 
     cpColor.style.backgroundColor = "#0003df";
 
@@ -331,7 +268,7 @@ function setRedEntry(row, column, circularBox) {
 function setBlueEntry(row, column, circularBox) {
 
 
-    var cpEl = document.getElementById("c-p-t");
+    const cpEl = document.getElementById("c-p-t");
 
     cpEl.style.color = 'red';
     console.log("GamePanel: " + gamePanel);
@@ -347,7 +284,7 @@ function setBlueEntry(row, column, circularBox) {
 
     currentPlayer = "red";
 
-    var cpColor = document.getElementById("c-p");
+    const cpColor = document.getElementById("c-p");
 
     cpColor.style.backgroundColor = "#fe0000";
 
@@ -375,11 +312,12 @@ function checkHorizontally() {
 
 
     for (let r = 0; r < rows; r++) {
+
         for (let c = 0; c < columns - 3; c++) {
 
             if (gamePanel[r][c] != 'empty') {
 
-                var col1 = c, col2 = c + 1, col3 = c + 2, col4 = c + 3;
+                const col1 = c, col2 = c + 1, col3 = c + 2, col4 = c + 3;
 
                 if (gamePanel[r][col1] == gamePanel[r][col2] && gamePanel[r][col2] == gamePanel[r][col3] && gamePanel[r][col3] == gamePanel[r][col4]) {
 
@@ -410,7 +348,7 @@ function checkVertically() {
             if (gamePanel[r][c] != 'empty') {
 
 
-                var row1 = r, row2 = r + 1, row3 = r + 2, row4 = r + 3;
+                const row1 = r, row2 = r + 1, row3 = r + 2, row4 = r + 3;
 
                 if (gamePanel[row1][c] == gamePanel[row2][c] && gamePanel[row2][c] == gamePanel[row3][c] && gamePanel[row3][c] == gamePanel[row4][c]) {
 
@@ -433,12 +371,11 @@ function checkDiagonally() {
         for (let c = 0; c < columns - 3; c++) {
             if (gamePanel[r][c] != 'empty') {
 
-                var col1 = c, col2 = c + 1, col3 = c + 2, col4 = c + 3;
-                var row1 = r, row2 = r - 1, row3 = r - 2, row4 = r - 3;
+                const col1 = c, col2 = c + 1, col3 = c + 2, col4 = c + 3;
+                const row1 = r, row2 = r - 1, row3 = r - 2, row4 = r - 3;
 
 
                 if (gamePanel[row1][col1] == gamePanel[row2][col2] && gamePanel[row2][col2] == gamePanel[row3][col3] && gamePanel[row3][col3] == gamePanel[row4][col4]) {
-
 
 
                     matchedRow = r;
@@ -467,14 +404,14 @@ function checkReversDiagonally() {
         for (let c = 0; c < 4; c++) {
 
             if (gamePanel[r][c] != 'empty') {
-                var col1 = c, col2 = c + 1, col3 = c + 2, col4 = c + 3;
-                var row1 = r, row2 = r + 1, row3 = r + 2, row4 = r + 3;
+                const col1 = c, col2 = c + 1, col3 = c + 2, col4 = c + 3;
+                const row1 = r, row2 = r + 1, row3 = r + 2, row4 = r + 3;
 
                 if (gamePanel[row1][col1] == gamePanel[row2][col2] && gamePanel[row2][col2] == gamePanel[row3][col3] && gamePanel[row3][col3] == gamePanel[row4][col4]) {
 
                     matchedRow = r;
-
                     matchedCol = c;
+
                     console.log("GamePanel: " + gamePanel[r][c]);
 
                     console.log("checkReversDiagonally")
