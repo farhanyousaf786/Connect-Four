@@ -14,6 +14,10 @@ var traking = [];      // we will set it value to total no of rows so we can che
 
 var currentPlayer = "blue";     // first entry will go for blue
 
+var matchedRow = 0;
+
+var matchedCol = 0;
+
 
 //init is a defual function that run when screen load.
 //The inner functions in init are the functionswhich control
@@ -164,6 +168,15 @@ function setEmptyPanelForHtml() {
 
             initialCircle.addEventListener("click", function () {
 
+
+
+                while (isWinner) {
+
+                    return alert("Game eneded!");
+
+                }
+
+
                 let trackers = this.id;
 
                 let row = parseInt(trackers.charAt(0));
@@ -174,16 +187,38 @@ function setEmptyPanelForHtml() {
 
                 traking[column] < 0 ? invalidEntry() : null;
 
-                let tile = document.getElementById(row.toString() + column.toString());
+                let circularBox = document.getElementById(row.toString() + column.toString());
 
 
                 // after the click if the user is red then we will update circle with red color
                 // otherwise we will update circle with blue color.
-                currentPlayer == "red" ? setRedEntry(row, column, tile) : setBlueEntry(row, column, tile);
+                currentPlayer == "red" ? setRedEntry(row, column, circularBox) : setBlueEntry(row, column, circularBox);
 
                 row--;
 
                 traking[column] = row;
+
+
+                if (checkDiagonally() == true ||
+                    checkReversDiagonally() == true ||
+                    checkHorizontally() == true ||
+                    checkVertically() == true) {
+
+                    let winner = document.getElementById("winner");
+
+                    if (gamePanel[matchedRow][matchedCol] == "red") {
+                        winner.innerText = "Red Wins";
+                    } else {
+                        winner.innerText = "Blue Wins";
+                    }
+                    isWinner = true;
+                    return alert("Game eneded!");
+
+
+
+                }
+
+
 
 
             }, false);
@@ -198,7 +233,7 @@ function setEmptyPanelForHtml() {
 
 
 // to update circle with red color
-function setRedEntry(row, column, tile) {
+function setRedEntry(row, column, circularBox) {
 
     var cpEl = document.getElementById("c-p-t");
 
@@ -206,13 +241,11 @@ function setRedEntry(row, column, tile) {
 
     cpEl.innerText = "Blue's Turn";
 
-
-
     gamePanel[row][column] = "red";
 
-    tile.classList.add(gamePanel[row][column]);
+    circularBox.classList.add(gamePanel[row][column]);
 
-    tile.style.backgroundColor = "#fe0000"
+    circularBox.style.backgroundColor = "#fe0000"
 
     currentPlayer = "blue";
 
@@ -226,7 +259,7 @@ function setRedEntry(row, column, tile) {
 
 
 // to update circle with blue color
-function setBlueEntry(row, column, tile) {
+function setBlueEntry(row, column, circularBox) {
 
 
     var cpEl = document.getElementById("c-p-t");
@@ -235,15 +268,11 @@ function setBlueEntry(row, column, tile) {
 
     cpEl.innerText = "Red's Turn";
 
-
-
-
-
     gamePanel[row][column] = "blue";
 
-    tile.classList.add(gamePanel[row][column]);
+    circularBox.classList.add(gamePanel[row][column]);
 
-    tile.style.backgroundColor = "#0003df ";
+    circularBox.style.backgroundColor = "#0003df ";
 
     currentPlayer = "red";
 
@@ -266,6 +295,120 @@ function invalidEntry() {
     return alert("This slot is already taken!");
 
 }
+
+
+
+
+
+
+function checkHorizontally() {
+
+
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns - 3; c++) {
+
+            if (gamePanel[r][c] != 'empty') {
+
+
+                if (gamePanel[r][c] == gamePanel[r][c + 1] && gamePanel[r][c + 1] == gamePanel[r][c + 2] && gamePanel[r][c + 2] == gamePanel[r][c + 3]) {
+
+                    matchedRow = r;
+
+                    matchedCol = c;
+
+                    return true;
+
+
+                }
+            }
+        }
+    }
+
+
+
+
+
+
+}
+
+function checkVertically() {
+
+
+    for (let c = 0; c < columns; c++) {
+        for (let r = 0; r < rows - 3; r++) {
+            if (gamePanel[r][c] != 'empty') {
+                if (gamePanel[r][c] == gamePanel[r + 1][c] && gamePanel[r + 1][c] == gamePanel[r + 2][c] && gamePanel[r + 2][c] == gamePanel[r + 3][c]) {
+
+                    matchedRow = r;
+                    matchedCol = c;
+                    console.log("checkVertically")
+
+                    return true;
+                }
+            }
+        }
+    }
+
+
+}
+
+function checkDiagonally() {
+
+    for (let r = 3; r < rows; r++) {
+        for (let c = 0; c < columns - 3; c++) {
+            if (gamePanel[r][c] != 'empty') {
+                if (gamePanel[r][c] == gamePanel[r - 1][c + 1] && gamePanel[r - 1][c + 1] == gamePanel[r - 2][c + 2] && gamePanel[r - 2][c + 2] == gamePanel[r - 3][c + 3]) {
+
+                    matchedRow = r;
+                    matchedCol = c;
+
+                    console.log("checkDiagonally")
+
+
+                    return true;
+                }
+            }
+        }
+    }
+
+
+
+
+}
+
+
+function checkReversDiagonally() {
+
+
+
+    for (let r = 0; r < 4; r++) {
+        for (let c = 0; c < 4; c++) {
+
+            if (gamePanel[r][c] != 'empty') {
+
+
+                if (gamePanel[r][c] == gamePanel[r + 1][c + 1] && gamePanel[r + 1][c + 1] == gamePanel[r + 2][c + 2] && gamePanel[r + 2][c + 2] == gamePanel[r + 3][c + 3]) {
+
+                    matchedRow = r;
+
+                    matchedCol = c;
+
+                    console.log("checkReversDiagonally")
+
+
+                    return true;
+                }
+
+            }
+        }
+    }
+
+
+
+
+
+}
+
 
 
 
