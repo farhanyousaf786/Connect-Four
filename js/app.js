@@ -1,22 +1,22 @@
-var isWinner = false;    // varible that will trigger to true as we find our winner
+let isWinner = false;    // varible that will trigger to true as we find our winner
 
 let emptyCircle = [];    // we will fill this array with "empty" string and leter append it into gamepanel
 
-var gamePanel = [];      // this is an array of gamePanel[row][column], this will initialize with "emptyCircle"
+let gamePanel = [];      // this is an array of gamePanel[row][column], this will initialize with "emptyCircle"
 
-var rows = 7;          // no. of rows
+const rows = 7;          // no. of rows
 
-var columns = 7;       // no. of columns
+const columns = 7;       // no. of columns
 
-var columnToTrack = rows - 1;     // no of tracks, this will help us to set initl Attributes to track filled columns or rows
+const columnToTrack = rows - 1;     // no of tracks, this will help us to set initl Attributes to track filled columns or rows
 
-var traking = [];      // we will set it value to total no of rows so we can check if triggers row is filled or not
+const traking = [];      // we will set it value to total no of rows so we can check if triggers row is filled or not
 
-var currentPlayer = "blue";     // first entry will go for blue
+let currentPlayer = "blue";     // first entry will go for blue
 
-var matchedRow = 0;
+let matchedRow = 0;
 
-var matchedCol = 0;
+let matchedCol = 0;
 
 
 //init is a defual function that run when screen load.
@@ -44,18 +44,18 @@ function setInitialAttributes() {
 
     document.body.style.textAlign = "center";
 
-    var winner = document.createElement("h2");
+    const winner = document.createElement("h2");
 
     winner.id = "winner";
 
     document.body.appendChild(winner);
 
 
-    var panel = document.createElement('div');
+    const panel = document.createElement('div');
 
     panel.id = "gamePanel";
 
-    var col1 = document.getElementById("col1");
+    const col1 = document.getElementById("col1");
 
     col1.appendChild(panel);
 
@@ -65,12 +65,12 @@ function setInitialAttributes() {
 
     //  these attributes are used to create the title element
 
-    var sidebar = document.createElement("div");
+    const sidebar = document.createElement("div");
 
     sidebar.id = "sidebar";
 
 
-    var cpText = document.createElement("div");
+    const cpText = document.createElement("div");
 
     cpText.id = "c-p-t";
 
@@ -85,7 +85,7 @@ function setInitialAttributes() {
 
     //  these attributes are used to create color BOX
 
-    var cpColor = document.createElement("div");
+    const cpColor = document.createElement("div");
 
     cpColor.id = "c-p";
 
@@ -95,7 +95,8 @@ function setInitialAttributes() {
 
 
 
-    var col2 = document.getElementById("col2");
+
+    const col2 = document.getElementById("col2");
 
     col2.appendChild(cpText);
 
@@ -105,7 +106,7 @@ function setInitialAttributes() {
 
     // this loop is to push tracking array
 
-    for (var i = 0; i <= columnToTrack; i++) {
+    for (let i = 0; i <= columnToTrack; i++) {
 
         traking.push(columnToTrack);
 
@@ -131,6 +132,7 @@ function setEmptyCirclesForJS() {
         gamePanel.push(emptyCircle);
 
         console.log("GamePanel: " + gamePanel);
+
         console.log("GamePanel: " + gamePanel.length);
 
 
@@ -154,7 +156,7 @@ function setEmptyPanelForHtml() {
 
         for (let column = 0; column < columns; column++) {
 
-            let initialCircle = document.createElement("div");
+            const initialCircle = document.createElement("div");
 
             initialCircle.id = row.toString() + column.toString();
 
@@ -170,66 +172,127 @@ function setEmptyPanelForHtml() {
             // next click on circle happens we can track if it is already filled 
             // or not
 
-            initialCircle.addEventListener("click", function () {
+
+
+            // initialCircle.addEventListener("click", function () {
 
 
 
-                while (isWinner) {
+            //     while (isWinner) {
 
-                    return alert("Game eneded!");
+            //         return alert("Game eneded!");
 
-                }
-
-
-                let trackers = this.id;
-
-                let row = parseInt(trackers.charAt(0));
-
-                let column = parseInt(trackers.charAt(1));
-
-                row = traking[column];
-
-                traking[column] < 0 ? invalidEntry() : null;
-
-                let circularBox = document.getElementById(row.toString() + column.toString());
+            //     }
 
 
-                // after the click if the user is red then we will update circle with red color
-                // otherwise we will update circle with blue color.
-                currentPlayer == "red" ? setRedEntry(row, column, circularBox) : setBlueEntry(row, column, circularBox);
+            //     let trackLocation = initialCircle.id;
 
-                row--;
+            //     let row = parseInt(trackLocation.charAt(0));
 
-                traking[column] = row;
+            //     let column = parseInt(trackLocation.charAt(1));
 
+            //     row = traking[column];
 
-                if (checkDiagonally() == true ||
-                    checkReversDiagonally() == true ||
-                    checkHorizontally() == true ||
-                    checkVertically() == true) {
+            //     row < 0 ? invalidEntry() : null;
 
-                    let winner = document.getElementById("winner");
-
-                    if (gamePanel[matchedRow][matchedCol] == "red") {
-                        winner.innerText = "Red Wins";
-                    } else {
-                        winner.innerText = "Blue Wins";
-                    }
-                    isWinner = true;
-                    return alert("Game eneded!");
+            //     let circularBox = document.getElementById(row.toString() + column.toString());
 
 
+            //     // after the click if the user is red then we will update circle with red color
+            //     // otherwise we will update circle with blue color.
+            //     currentPlayer == "red" ? setRedEntry(row, column, circularBox) : setBlueEntry(row, column, circularBox);
 
-                }
+            //     row--;
+
+            //     traking[column] = row;
 
 
+            //     if (checkDiagonally() == true ||
+            //         checkReversDiagonally() == true ||
+            //         checkHorizontally() == true ||
+            //         checkVertically() == true) {
+
+            //         let winner = document.getElementById("winner");
+
+            //         if (gamePanel[matchedRow][matchedCol] == "red") {
+            //             winner.innerText = "Red Wins";
+            //         } else {
+            //             winner.innerText = "Blue Wins";
+            //         }
+            //         isWinner = true;
+            //         return alert("Game eneded!");
+
+            //     }
 
 
-            }, false);
+            // }, false);
 
         }
 
     }
+
+          // this function will track every click on every cirlce 
+            // after click on circle we will update the circle position
+            // if it is valid. after update the circle position will be updated
+            // the tracking array and remove our row from that column so when
+            // next click on circle happens we can track if it is already filled 
+            // or not
+
+
+
+    while (isWinner) {
+
+        return alert("Game eneded!");
+
+    }
+
+
+    const target = document.querySelector("div");
+
+    target.addEventListener("click", (e) => {
+
+        console.log("target = " + e.target.id);
+
+        let row = e.target.id.charAt(0);
+
+        let column = e.target.id.charAt(1);
+        row = traking[column];
+
+        row < 0 ? invalidEntry() : null;
+
+        let circularBox = document.getElementById(row.toString() + column.toString());
+
+
+        // after the click if the user is red then we will update circle with red color
+        // otherwise we will update circle with blue color.
+        currentPlayer == "red" ? setRedEntry(row, column, circularBox) : setBlueEntry(row, column, circularBox);
+
+        row--;
+
+        traking[column] = row;
+
+
+        if (checkDiagonally() == true ||
+            checkReversDiagonally() == true ||
+            checkHorizontally() == true ||
+            checkVertically() == true) {
+
+            let winner = document.getElementById("winner");
+
+            if (gamePanel[matchedRow][matchedCol] == "red") {
+                winner.innerText = "Red Wins";
+            } else {
+                winner.innerText = "Blue Wins";
+            }
+            isWinner = true;
+            return alert("Game eneded!");
+
+        }
+
+
+
+
+    });
 
 }
 
