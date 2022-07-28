@@ -70,38 +70,42 @@ function setInitialAttributes() {
 
 
     /* 
-     here, create a new div element to show
-     current player's color.
+        here, create a new div element to show
+        current player's color.
     */
 
-    const cpColor = document.createElement("div");
+    const currentPlayerColor = document.createElement("div");
 
-    cpColor.id = "current-player-color";
+    currentPlayerColor.id = "current-player-color";
 
-    cpColor.innerText.backgroundColor = "white";
+    currentPlayerColor.innerText.backgroundColor = "white";
 
 
+    /* 
+      here, create a new div element to show
+      current player's name if it is blue or red.
+    */
 
-    //
+    const currentPlayerText = document.createElement("div");
 
-    const cpText = document.createElement("div");
+    currentPlayerText.id = "current-player-text";
 
-    cpText.id = "current-player-text";
+    currentPlayerText.innerText = "Blue's Turn";
 
-    cpText.innerText = "Blue's Turn";
+    currentPlayerText.style.fontSize = "20px";
 
-    cpText.style.fontSize = "20px";
+    currentPlayerText.style.color = "blue";
 
-    document.body.appendChild(cpText);
 
-    document.getElementById("current-player-text").style.color = 'blue';
-
+    /*
+    Append both element currentPlayerColor & currentPlayerText into
+    an exisitng element name col2
+    */
     const col2 = document.getElementById("col2");
 
+    col2.appendChild(currentPlayerColor);
 
-    col2.appendChild(cpColor);
-
-    col2.appendChild(cpText);
+    col2.appendChild(currentPlayerText);
 
 
 
@@ -278,8 +282,6 @@ function setRedEntry(row, column, circularBox) {
 
     gamePanel[row][column] = "red";
 
-    console.log("GamePanel: " + gamePanel);
-
     circularBox.classList.add(gamePanel[row][column]);
 
     circularBox.style.backgroundColor = "#fe0000"
@@ -287,9 +289,9 @@ function setRedEntry(row, column, circularBox) {
     currentPlayer = "blue";
 
 
-    const cpColor = document.getElementById("current-player-color");
+    const currentPlayerColor = document.getElementById("current-player-color");
 
-    cpColor.style.backgroundColor = "#0003df";
+    currentPlayerColor.style.backgroundColor = "#0003df";
 
 
 }
@@ -315,9 +317,9 @@ function setBlueEntry(row, column, circularBox) {
 
     currentPlayer = "red";
 
-    const cpColor = document.getElementById("current-player-color");
+    const currentPlayerColor = document.getElementById("current-player-color");
 
-    cpColor.style.backgroundColor = "#fe0000";
+    currentPlayerColor.style.backgroundColor = "#fe0000";
 
 
 }
