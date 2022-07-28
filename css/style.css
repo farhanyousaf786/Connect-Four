@@ -22,7 +22,7 @@
 
 
 
-#c-p {
+#current-player-color {
     height: 100px;
     width: 100px;
     margin: 5px;
@@ -104,13 +104,13 @@ body {
     /* Stay in place */
     z-index: 1;
     /* Sit on top */
-    padding-top: 300px;
+    padding-top: 100px;
     /* Location of the box */
     left: 0;
     top: 0;
-    width: 50%;
+    width: 100%;
     /* Full width */
-    height: 50%;
+    height: 100%;
     /* Full height */
     overflow: auto;
     /* Enable scroll if needed */
@@ -126,7 +126,9 @@ body {
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 50%;
+    height: 30%;
+    font-size: 30px;
 }
 
 /* The Close Button */
@@ -138,6 +140,7 @@ body {
 }
 
 .close:hover,
+
 .close:focus {
     color: #000;
     text-decoration: none;

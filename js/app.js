@@ -1,61 +1,39 @@
-let isWinner = false;    // varible that will trigger to true as we find our winner
+// varible that will trigger to true as we find our winner
+let isWinner = false;
 
-let emptyCircle = [];    // we will fill this array with "empty" string and leter append it into gamepanel
+// we will fill this array with "empty" string and leter append it into gamepanel
+let emptyCircle = [];
 
-let gamePanel = [];      // this is an array of gamePanel[row][column], this will initialize with "emptyCircle"
+// this is an array of gamePanel[row][column], this will initialize with "emptyCircle"
+let gamePanel = [];
 
-const rows = 7;          // no. of rows
+// no. of rows
+const rows = 7;
 
-const columns = 7;       // no. of columns
+// no. of columns
+const columns = 7;
 
-const columnToTrack = rows - 1;     // no of tracks, this will help us to set initl Attributes to track filled columns or rows
+// no of tracks, this will help us to set initl Attributes to track filled columns or rows
+const columnToTrack = rows - 1;
 
-const traking = [];      // we will set it value to total no of rows so we can check if triggers row is filled or not
+// we will set it value to total no of rows so we can check if triggers row is filled or not
+const traking = [];
 
-let currentPlayer = "blue";     // first entry will go for blue
+// first entry will go for blue
+let currentPlayer = "blue";
 
+// will update when we find our winner at specified row
 let matchedRow = 0;
 
+// will update when we find our winner at specified column
 let matchedCol = 0;
 
-
-
-
-// // Get the modal
-// var modal = document.getElementById("myModal");
-
-// // Get the button that opens the modal
-// var btn = document.getElementById("myBtn");
-
-// // Get the <span> element that closes the modal
-// var span = document.getElementsByClassName("close")[0];
-
-// // When the user clicks the button, open the modal 
-// btn.onclick = function () {
-//     modal.style.display = "block";
-// }
-
-// // When the user clicks on <span> (x), close the modal
-// span.onclick = function () {
-//     modal.style.display = "none";
-// }
-
-// // When the user clicks anywhere outside of the modal, close it
-// window.onclick = function (event) {
-//     if (event.target == modal) {
-//         modal.style.display = "none";
-//     }
-// }
-
-
-
-
-
-//init is a defual function that run when screen load.
-//The inner functions in init are the functionswhich control
-//our defual values like # of columns or empty 2d array
-//along with empty circles.
-
+/*
+init is a defual function that run when screen load.
+he inner functions in init are the functionswhich control
+our defual values like # of columns or empty 2d array
+along with empty circles.
+*/
 function init() {
 
     setInitialAttributes();
@@ -71,18 +49,16 @@ function init() {
 function setInitialAttributes() {
 
 
-    //insert a number into traking array which will be
-    // eual to the total # of rows in panel
 
+    // this line will set our body elements at center
     document.body.style.textAlign = "center";
 
-    const winner = document.createElement("h2");
-
-    winner.id = "winner";
-
-    document.body.appendChild(winner);
 
 
+    /* 
+    this block is to create our empty gamePanel element 
+    and to append it to col1 element
+    */
     const panel = document.createElement('div');
 
     panel.id = "gamePanel";
@@ -93,33 +69,24 @@ function setInitialAttributes() {
 
 
 
-
-
-    //  these attributes are used to create the title element
-
-    const sidebar = document.createElement("div");
-
-    sidebar.id = "sidebar";
-
-
-
-    //  these attributes are used to create color BOX
+    /* 
+     here, create a new div element to show
+     current player's color.
+    */
 
     const cpColor = document.createElement("div");
 
-    cpColor.id = "c-p";
+    cpColor.id = "current-player-color";
 
     cpColor.innerText.backgroundColor = "white";
 
-
-    document.body.appendChild(cpColor);
 
 
     //
 
     const cpText = document.createElement("div");
 
-    cpText.id = "c-p-t";
+    cpText.id = "current-player-text";
 
     cpText.innerText = "Blue's Turn";
 
@@ -127,8 +94,7 @@ function setInitialAttributes() {
 
     document.body.appendChild(cpText);
 
-    document.getElementById("c-p-t").style.color = 'blue';
-
+    document.getElementById("current-player-text").style.color = 'blue';
 
     const col2 = document.getElementById("col2");
 
@@ -251,7 +217,7 @@ function setAndListenEmptyCircle() {
 
             } else {
 
-                showWinnerOnMenu("Congratulations, Red Wins");
+                showWinnerOnMenu("Congratulations, Blue Wins");
 
 
             }
@@ -273,9 +239,9 @@ function setAndListenEmptyCircle() {
 function showWinnerOnMenu(winner) {
 
 
-    document.getElementById("c-p").remove();
+    document.getElementById("current-player-color").remove();
 
-    document.getElementById("c-p-t").remove();
+    document.getElementById("current-player-text").remove();
 
     const col2 = document.getElementById("col2");
 
@@ -304,7 +270,7 @@ function showWinnerOnMenu(winner) {
 // to update circle with red color
 function setRedEntry(row, column, circularBox) {
 
-    const cpEl = document.getElementById("c-p-t");
+    const cpEl = document.getElementById("current-player-text");
 
     cpEl.style.color = 'blue'
 
@@ -321,7 +287,7 @@ function setRedEntry(row, column, circularBox) {
     currentPlayer = "blue";
 
 
-    const cpColor = document.getElementById("c-p");
+    const cpColor = document.getElementById("current-player-color");
 
     cpColor.style.backgroundColor = "#0003df";
 
@@ -333,7 +299,7 @@ function setRedEntry(row, column, circularBox) {
 function setBlueEntry(row, column, circularBox) {
 
 
-    const cpEl = document.getElementById("c-p-t");
+    const cpEl = document.getElementById("current-player-text");
 
     cpEl.style.color = 'red';
     console.log("GamePanel: " + gamePanel);
@@ -349,7 +315,7 @@ function setBlueEntry(row, column, circularBox) {
 
     currentPlayer = "red";
 
-    const cpColor = document.getElementById("c-p");
+    const cpColor = document.getElementById("current-player-color");
 
     cpColor.style.backgroundColor = "#fe0000";
 
