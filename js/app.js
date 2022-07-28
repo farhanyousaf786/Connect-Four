@@ -243,17 +243,14 @@ function setAndListenEmptyCircle() {
             checkHorizontally() == true ||
             checkVertically() == true) {
 
-            let winner = document.getElementById("winner");
 
             if (gamePanel[matchedRow][matchedCol] == "red") {
 
-                winner.innerText = "Congratulations, Red Wins";
                 showWinnerOnMenu("Congratulations, Red Wins");
 
 
             } else {
 
-                winner.innerText = "Congratulations, Blue Wins";
                 showWinnerOnMenu("Congratulations, Red Wins");
 
 
@@ -276,26 +273,14 @@ function setAndListenEmptyCircle() {
 function showWinnerOnMenu(winner) {
 
 
-
-    const winnerMenu = document.createElement('div');
-
-    winnerMenu.id = "innerMenu";
-
-    winnerMenu.innerText = winner;
-
     document.getElementById("c-p").remove();
 
     document.getElementById("c-p-t").remove();
 
-
     const col2 = document.getElementById("col2");
 
 
-    document.body.appendChild(winnerMenu);
-
-    col2.appendChild(winnerMenu);
-
-    const modal = document.getElementById("myModal");
+    const modal = document.getElementById("winnerBox");
 
     modal.style.display = "block";
 
@@ -310,9 +295,6 @@ function showWinnerOnMenu(winner) {
     span.onclick = function () {
         modal.style.display = "none";
     }
-
-    return alert("Game eneded!");
-
 
 
 }

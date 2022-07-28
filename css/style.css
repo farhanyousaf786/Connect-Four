@@ -97,20 +97,20 @@ body {
 
 
 
-.modal {
+.box {
     display: none;
     /* Hidden by default */
     position: fixed;
     /* Stay in place */
     z-index: 1;
     /* Sit on top */
-    padding-top: 100px;
+    padding-top: 300px;
     /* Location of the box */
     left: 0;
     top: 0;
-    width: 100%;
+    width: 50%;
     /* Full width */
-    height: 100%;
+    height: 50%;
     /* Full height */
     overflow: auto;
     /* Enable scroll if needed */
@@ -121,7 +121,7 @@ body {
 }
 
 /* Modal Content */
-.modal-content {
+.box-content {
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
