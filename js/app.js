@@ -14,10 +14,10 @@ const rows = 7;
 const columns = 7;
 
 // no of tracks, this will help us to set initl Attributes to track filled columns or rows
-const columnToTrack = rows - 1;
+const columnToTrack = 7;
 
-// we will set it value to total no of rows so we can check if triggers row is filled or not
-const traking = [];
+// this array will store counting of occopied entries in our panel
+const trackingFilledBoxRow = [];
 
 // first entry will go for blue
 let currentPlayer = "blue";
@@ -40,7 +40,7 @@ function init() {
 
     setEmptyCirclesForJS();
 
-    setAndListenEmptyCircle();
+    setAndListenEmptyCircleHtml();
 
 }
 
@@ -70,7 +70,7 @@ function setInitialAttributes() {
 
 
     /* 
-        here, create a new div element to show
+        create a new div element to show
         current player's color.
     */
 
@@ -82,7 +82,7 @@ function setInitialAttributes() {
 
 
     /* 
-      here, create a new div element to show
+      create a new div element to show
       current player's name if it is blue or red.
     */
 
@@ -110,13 +110,19 @@ function setInitialAttributes() {
 
 
 
-    // this loop is to push tracking array
+    /* 
+    this loop is to push element in trackingFilledBoxRow array
+    it will fill array with 6 to each element. because when we 
+    track row's gravity later, we will start from 0-6 that make it 7.
+    */
 
-    for (let i = 0; i <= columnToTrack; i++) {
+    for (let i = 0; i <= columnToTrack-1; i++) {
 
-        traking.push(columnToTrack);
+        trackingFilledBoxRow.push(columnToTrack-1);
 
     }
+
+    console.log("traking: " + trackingFilledBoxRow);
 
 }
 
@@ -127,23 +133,20 @@ function setEmptyCirclesForJS() {
 
     for (let row = 0; row < rows; row++) {
 
+
+        // set it to empty after every ittration because we want to add onlt 7
+        // empty slots on each entry of gamePanel to make it 2d
         emptyCircle = [];
 
         for (let column = 0; column < columns; column++) {
 
-
             emptyCircle[column] = "empty";
         }
 
+        //here we push 7 empty element for each row and colum
         gamePanel.push(emptyCircle);
 
-        console.log("GamePanel: " + gamePanel);
-
-        console.log("GamePanel: " + gamePanel.length);
-
-
     }
-
 
 }
 
@@ -156,7 +159,7 @@ function setEmptyCirclesForJS() {
 // emoty gamePanel[row][column]. then make an action 
 // listner for each entry of that array.
 
-function setAndListenEmptyCircle() {
+function setAndListenEmptyCircleHtml() {
 
     for (let row = 0; row < rows; row++) {
 
@@ -192,7 +195,7 @@ function setAndListenEmptyCircle() {
 
         let column = e.target.id.charAt(1);
 
-        row = traking[column];
+        row = trackingFilledBoxRow[column];
 
         row < 0 ? invalidEntry() : null;
 
@@ -205,7 +208,10 @@ function setAndListenEmptyCircle() {
 
         row--;
 
-        traking[column] = row;
+        trackingFilledBoxRow[column] = row;
+
+        console.log("traking: " + trackingFilledBoxRow);
+
 
 
         if (checkDiagonally() == true ||
