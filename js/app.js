@@ -34,6 +34,7 @@ he inner functions in init are the functionswhich control
 our defual values like # of columns or empty 2d array
 along with empty circles.
 */
+
 function init() {
 
     setInitialAttributes();
@@ -192,7 +193,6 @@ function actioListnerForEachSelection() {
 
     if (isWinner == false) {
 
-
         const target = document.querySelector("div");
 
         target.addEventListener("click", (e) => {
@@ -252,23 +252,20 @@ function showWinnerOnMenu(winner) {
 
     document.getElementById("current-player-text").remove();
 
-    const col2 = document.getElementById("col2");
+    const menuBox = document.getElementById("content-menu");
 
+    menuBox.style.display = "block";
 
-    const modal = document.getElementById("winnerBox");
-
-    modal.style.display = "block";
-
-    const winnerText = document.getElementById("winner-menu");
+    const winnerText = document.getElementById("menu");
 
     winnerText.innerText = winner;
 
-    // Get the <span> element that closes the modal
+    // Get the <span> element that closes the menuBox
     var span = document.getElementsByClassName("close")[0];
 
-    // When the user clicks on <span> (x), close the modal
+    // When the user clicks on <span> (x), close the menuBox
     span.onclick = function () {
-        modal.style.display = "none";
+        menuBox.style.display = "none";
     }
 
 
