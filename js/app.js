@@ -245,32 +245,6 @@ function actioListnerForEachSelection() {
     }
 }
 
-function showWinnerOnMenu(winner) {
-
-
-    document.getElementById("current-player-color").remove();
-
-    document.getElementById("current-player-text").remove();
-
-    const menuBox = document.getElementById("content-menu");
-
-    menuBox.style.display = "block";
-
-    const winnerText = document.getElementById("menu");
-
-    winnerText.innerText = winner;
-
-    // Get the <span> element that closes the menuBox
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks on <span> (x), close the menuBox
-    span.onclick = function () {
-        menuBox.style.display = "none";
-    }
-
-
-}
-
 
 
 // to update circle with red color
@@ -327,10 +301,55 @@ function setBlueEntry(row, column, circularBox) {
 }
 
 
+
+
+function showWinnerOnMenu(winner) {
+
+
+    document.getElementById("current-player-color").remove();
+
+    document.getElementById("current-player-text").remove();
+
+    const menuBox = document.getElementById("content-menu");
+
+    menuBox.style.display = "block";
+
+    const winnerText = document.getElementById("menu");
+
+    winnerText.innerText = winner;
+
+    // Get the <span> element that closes the menuBox
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the menuBox
+    span.onclick = function () {
+        menuBox.style.display = "none";
+    }
+
+
+}
+
+
+
+
 function invalidEntry() {
 
 
-    return alert("This slot is already taken!");
+    const menuBox = document.getElementById("content-menu");
+
+    menuBox.style.display = "block";
+
+    const winnerText = document.getElementById("menu");
+
+    winnerText.innerText = "This slot is already taken, Please chose an empty slot (Circle).";
+
+    // Get the <span> element that closes the menuBox
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the menuBox
+    span.onclick = function () {
+        menuBox.style.display = "none";
+    }
 
 }
 
