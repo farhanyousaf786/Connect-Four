@@ -214,7 +214,7 @@ function actioListnerForEachSelection() {
 }
 
 
-// to update circle with red color
+// to update circle with red color.
 function setRedEntry(row, column, circularBox) {
 
     const cpEl = document.getElementById("current-player-text");
