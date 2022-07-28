@@ -42,6 +42,8 @@ function init() {
 
     setAndListenEmptyCircleHtml();
 
+    actioListnerForEachSelection();
+
 }
 
 
@@ -116,9 +118,9 @@ function setInitialAttributes() {
     track row's gravity later, we will start from 0-6 that make it 7.
     */
 
-    for (let i = 0; i <= columnToTrack-1; i++) {
+    for (let i = 0; i <= columnToTrack - 1; i++) {
 
-        trackingFilledBoxRow.push(columnToTrack-1);
+        trackingFilledBoxRow.push(columnToTrack - 1);
 
     }
 
@@ -151,13 +153,8 @@ function setEmptyCirclesForJS() {
 }
 
 
-//  this is the most important function of the projec
-// this function allow us to make 2d array and make 
-// 2d empty circles with colors. then these circless
-// are given class name "cricle" and id the curretn
-// entry of 2d array then insert these circles to our
-// emoty gamePanel[row][column]. then make an action 
-// listner for each entry of that array.
+
+// set an empty circle in 2d array and then push each entry row in gamePanel 
 
 function setAndListenEmptyCircleHtml() {
 
@@ -165,8 +162,13 @@ function setAndListenEmptyCircleHtml() {
 
         for (let column = 0; column < columns; column++) {
 
+            // this is an empty circle we will update it with respect to the
+            // gamePanel and trackingFilledBoxRow
             const initialCircle = document.createElement("div");
 
+
+            // set every id for each element of game panel different 
+            // and the id will be the row and col of at current point
             initialCircle.id = row.toString() + column.toString();
 
             initialCircle.classList.add("circle");
@@ -178,73 +180,70 @@ function setAndListenEmptyCircleHtml() {
     }
 
 
-    while (isWinner) {
-
-        return alert("Game eneded!");
-
-    }
-
-
-    const target = document.querySelector("div");
-
-    target.addEventListener("click", (e) => {
-
-        console.log("target = " + e.target.id);
-
-        let row = e.target.id.charAt(0);
-
-        let column = e.target.id.charAt(1);
-
-        row = trackingFilledBoxRow[column];
-
-        row < 0 ? invalidEntry() : null;
-
-        const circularBox = document.getElementById(row.toString() + column.toString());
-
-
-        // after the click if the user is red then we will update circle with red color
-        // otherwise we will update circle with blue color.
-        currentPlayer == "red" ? setRedEntry(row, column, circularBox) : setBlueEntry(row, column, circularBox);
-
-        row--;
-
-        trackingFilledBoxRow[column] = row;
-
-        console.log("traking: " + trackingFilledBoxRow);
-
-
-
-        if (checkDiagonally() == true ||
-            checkReversDiagonally() == true ||
-            checkHorizontally() == true ||
-            checkVertically() == true) {
-
-
-            if (gamePanel[matchedRow][matchedCol] == "red") {
-
-                showWinnerOnMenu("Congratulations, Red Wins");
-
-
-            } else {
-
-                showWinnerOnMenu("Congratulations, Blue Wins");
-
-
-            }
-
-            isWinner = true;
-
-
-        }
-
-
-
-
-    });
-
 }
 
 
+
+// this is the most important function of our app
+// this function listen every click on every empty
+// circle and then track it through the id and pass
+// id to check if circle is already filled or not
+function actioListnerForEachSelection() {
+
+    if (isWinner == false) {
+
+
+        const target = document.querySelector("div");
+
+        target.addEventListener("click", (e) => {
+
+            console.log("target = " + e.target.id);
+
+            let row = e.target.id.charAt(0);
+
+            let column = e.target.id.charAt(1);
+
+            row = trackingFilledBoxRow[column];
+
+            row < 0 ? invalidEntry() : null;
+
+            const circularBox = document.getElementById(row.toString() + column.toString());
+
+
+            // after the click if the user is red then we will update circle with red color
+            // otherwise we will update circle with blue color.
+            currentPlayer == "red" ? setRedEntry(row, column, circularBox) : setBlueEntry(row, column, circularBox);
+
+            row--;
+
+            trackingFilledBoxRow[column] = row;
+
+            console.log("traking: " + trackingFilledBoxRow);
+
+            if (checkDiagonally() == true ||
+                checkReversDiagonally() == true ||
+                checkHorizontally() == true ||
+                checkVertically() == true) {
+
+
+                if (gamePanel[matchedRow][matchedCol] == "red") {
+
+                    showWinnerOnMenu("Congratulations, Red Wins");
+
+
+                } else {
+
+                    showWinnerOnMenu("Congratulations, Blue Wins");
+
+                }
+
+                isWinner = true;
+
+            }
+        });
+
+    }
+}
 
 function showWinnerOnMenu(winner) {
 
