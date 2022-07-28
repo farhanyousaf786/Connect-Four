@@ -129,35 +129,44 @@ function setInitialAttributes() {
 
 
     // set how to play button
-    howToPlay();
+    howToPlayButton();
 
 
 }
 
 
 
-function howToPlay() {
+function howToPlayButton() {
 
 
-    const howToPlayButton = document.querySelector("howToPlay");
+    const restartButton = document.getElementById("restart");
 
-    // howToPlayButton.addEventListener("click", (e) => {});
+    restartButton.style.display = "none";
 
-    // const menuBox = document.getElementById("content-menu");
+    const howToPlayButton = document.getElementById("howToPlay");
 
-    // menuBox.style.display = "block";
+    howToPlayButton.addEventListener("click", (e) => {
 
-    // const winnerText = document.getElementById("menu");
+        const menuBox = document.getElementById("content-menu");
 
-    // winnerText.innerText = "This slot is already taken, Please chose an empty slot (Circle).";
+        menuBox.style.display = "block";
 
-    // // Get the <span> element that closes the menuBox
-    // var span = document.getElementsByClassName("close")[0];
+        const winnerText = document.getElementById("menu");
 
-    // // When the user clicks on <span> (x), close the menuBox
-    // span.onclick = function () {
-    //     menuBox.style.display = "none";
-    // }
+        winnerText.style.fontSize = "20px";
+
+        winnerText.innerText = "1) You have to make FOUR consective entires of same COLOR too win.\n 2) Just click on empty circles to make you entry.";
+
+        // Get the <span> element that closes the menuBox
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on <span> (x), close the menuBox
+        span.onclick = function () {
+            menuBox.style.display = "none";
+        }
+
+    });
+
 
 
 }
@@ -339,7 +348,6 @@ function setBlueEntry(row, column, circularBox) {
 
 function showWinnerOnMenu(winner) {
 
-
     document.getElementById("current-player-color").remove();
 
     document.getElementById("current-player-text").remove();
@@ -352,12 +360,24 @@ function showWinnerOnMenu(winner) {
 
     winnerText.innerText = winner;
 
-    // Get the <span> element that closes the menuBox
     var span = document.getElementsByClassName("close")[0];
 
-    // When the user clicks on <span> (x), close the menuBox
     span.onclick = function () {
+
         menuBox.style.display = "none";
+
+    }
+
+    const restartButton = document.getElementById("restart");
+
+    restartButton.style.display = "block";
+
+    restartButton.style.margin = "auto";
+
+    restartButton.onclick = function () {
+
+
+        location.reload();
     }
 
 
@@ -375,12 +395,14 @@ function invalidEntry() {
 
     const winnerText = document.getElementById("menu");
 
-    winnerText.innerText = "This slot is already taken, Please chose an empty slot (Circle).";
+    winnerText.style.color = "red";
 
-    // Get the <span> element that closes the menuBox
+    winnerText.style.fontSize = "22px";
+
+    winnerText.innerText = "Alert!! \n -> This slot is already taken, Please chose an empty slot (Circle).";
+
     var span = document.getElementsByClassName("close")[0];
 
-    // When the user clicks on <span> (x), close the menuBox
     span.onclick = function () {
         menuBox.style.display = "none";
     }
