@@ -19,6 +19,38 @@ let matchedRow = 0;
 let matchedCol = 0;
 
 
+
+
+// // Get the modal
+// var modal = document.getElementById("myModal");
+
+// // Get the button that opens the modal
+// var btn = document.getElementById("myBtn");
+
+// // Get the <span> element that closes the modal
+// var span = document.getElementsByClassName("close")[0];
+
+// // When the user clicks the button, open the modal 
+// btn.onclick = function () {
+//     modal.style.display = "block";
+// }
+
+// // When the user clicks on <span> (x), close the modal
+// span.onclick = function () {
+//     modal.style.display = "none";
+// }
+
+// // When the user clicks anywhere outside of the modal, close it
+// window.onclick = function (event) {
+//     if (event.target == modal) {
+//         modal.style.display = "none";
+//     }
+// }
+
+
+
+
+
 //init is a defual function that run when screen load.
 //The inner functions in init are the functionswhich control
 //our defual values like # of columns or empty 2d array
@@ -84,7 +116,7 @@ function setInitialAttributes() {
 
 
     //
-    
+
     const cpText = document.createElement("div");
 
     cpText.id = "c-p-t";
@@ -215,18 +247,20 @@ function setAndListenEmptyCircle() {
 
             if (gamePanel[matchedRow][matchedCol] == "red") {
 
-                winner.innerText = "Red Wins";
+                winner.innerText = "Congratulations, Red Wins";
+                showWinnerOnMenu("Congratulations, Red Wins");
 
 
             } else {
 
-                winner.innerText = "Blue Wins";
+                winner.innerText = "Congratulations, Blue Wins";
+                showWinnerOnMenu("Congratulations, Red Wins");
+
 
             }
 
             isWinner = true;
 
-            return alert("Game eneded!");
 
         }
 
@@ -237,6 +271,51 @@ function setAndListenEmptyCircle() {
 
 }
 
+
+
+function showWinnerOnMenu(winner) {
+
+
+
+    const winnerMenu = document.createElement('div');
+
+    winnerMenu.id = "innerMenu";
+
+    winnerMenu.innerText = winner;
+
+    document.getElementById("c-p").remove();
+
+    document.getElementById("c-p-t").remove();
+
+
+    const col2 = document.getElementById("col2");
+
+
+    document.body.appendChild(winnerMenu);
+
+    col2.appendChild(winnerMenu);
+
+    const modal = document.getElementById("myModal");
+
+    modal.style.display = "block";
+
+    const winnerText = document.getElementById("winner-menu");
+
+    winnerText.innerText = winner;
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    return alert("Game eneded!");
+
+
+
+}
 
 
 
@@ -293,10 +372,6 @@ function setBlueEntry(row, column, circularBox) {
     cpColor.style.backgroundColor = "#fe0000";
 
 
-
-
-
-
 }
 
 
@@ -316,22 +391,15 @@ function checkHorizontally() {
 
 
     for (let r = 0; r < rows; r++) {
-
         for (let c = 0; c < columns - 3; c++) {
-
             if (gamePanel[r][c] != 'empty') {
-
                 const col1 = c, col2 = c + 1, col3 = c + 2, col4 = c + 3;
-
-                if (gamePanel[r][col1] == gamePanel[r][col2] && gamePanel[r][col2] == gamePanel[r][col3] && gamePanel[r][col3] == gamePanel[r][col4]) {
-
+                if (gamePanel[r][col1] == gamePanel[r][col2] &&
+                    gamePanel[r][col2] == gamePanel[r][col3] &&
+                    gamePanel[r][col3] == gamePanel[r][col4]) {
                     matchedRow = r;
-
                     matchedCol = c;
-
                     return true;
-
-
                 }
             }
         }
@@ -354,7 +422,9 @@ function checkVertically() {
 
                 const row1 = r, row2 = r + 1, row3 = r + 2, row4 = r + 3;
 
-                if (gamePanel[row1][c] == gamePanel[row2][c] && gamePanel[row2][c] == gamePanel[row3][c] && gamePanel[row3][c] == gamePanel[row4][c]) {
+                if (gamePanel[row1][c] == gamePanel[row2][c] &&
+                    gamePanel[row2][c] == gamePanel[row3][c] &&
+                    gamePanel[row3][c] == gamePanel[row4][c]) {
 
                     matchedRow = r;
                     matchedCol = c;
@@ -379,7 +449,9 @@ function checkDiagonally() {
                 const row1 = r, row2 = r - 1, row3 = r - 2, row4 = r - 3;
 
 
-                if (gamePanel[row1][col1] == gamePanel[row2][col2] && gamePanel[row2][col2] == gamePanel[row3][col3] && gamePanel[row3][col3] == gamePanel[row4][col4]) {
+                if (gamePanel[row1][col1] == gamePanel[row2][col2] &&
+                    gamePanel[row2][col2] == gamePanel[row3][col3] &&
+                    gamePanel[row3][col3] == gamePanel[row4][col4]) {
 
 
                     matchedRow = r;
@@ -393,8 +465,6 @@ function checkDiagonally() {
             }
         }
     }
-
-
 
 
 }
@@ -411,7 +481,9 @@ function checkReversDiagonally() {
                 const col1 = c, col2 = c + 1, col3 = c + 2, col4 = c + 3;
                 const row1 = r, row2 = r + 1, row3 = r + 2, row4 = r + 3;
 
-                if (gamePanel[row1][col1] == gamePanel[row2][col2] && gamePanel[row2][col2] == gamePanel[row3][col3] && gamePanel[row3][col3] == gamePanel[row4][col4]) {
+                if (gamePanel[row1][col1] == gamePanel[row2][col2] &&
+                    gamePanel[row2][col2] == gamePanel[row3][col3] &&
+                    gamePanel[row3][col3] == gamePanel[row4][col4]) {
 
                     matchedRow = r;
                     matchedCol = c;
