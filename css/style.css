@@ -63,20 +63,26 @@ body {
 }
 
 #logoImage {
+<<<<<<< HEAD
     padding-right: 18%;
+=======
+    padding-right: 10%;
+>>>>>>> main
 }
 
 #howToPlay {
     padding-right: 10%;
 }
 
-
-
 #col2 {
     width: 200px;
+<<<<<<< HEAD
+=======
+
+    /* border: 1px solid black; */
+>>>>>>> main
     padding-left: 10%;
 }
-
 
 #logoImage {
     margin: 1%;

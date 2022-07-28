@@ -28,6 +28,15 @@ let matchedRow = 0;
 // will update when we find our winner at specified column
 let matchedCol = 0;
 
+<<<<<<< HEAD
+=======
+// Background Music initilization
+const playerMusic = new Audio('music/bg-music.mp3');
+
+// varible that will trigger to true as we find our winner
+let isMusicPlaying = true;
+
+>>>>>>> main
 
 /*
 init is a defual function that run when screen load.
@@ -35,14 +44,17 @@ he inner functions in init are the functionswhich control
 our defual values like # of columns or empty 2d array
 along with empty circles.
 */
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> main
 function init() {
     setInitialAttributes();
     setEmptyCirclesForJS();
     setAndListenEmptyCircleHtml();
     actioListnerForEachSelection();
 }
-
-
 
 function setInitialAttributes() {
 
@@ -92,6 +104,7 @@ function setInitialAttributes() {
     for (let i = 0; i <= columnToTrack - 1; i++) {
         trackingFilledBoxRow.push(columnToTrack - 1);
     }
+<<<<<<< HEAD
     console.log("traking: " + trackingFilledBoxRow);
 
     // set how to play button
@@ -112,17 +125,72 @@ function howToPlayButton() {
     // eventlistner uses to caption user click and then we insert our
     //requre entities to in elenemt
     howToPlayButton.addEventListener("click", () => {
+=======
+
+    // set how to play button
+    howToPlayButton();
+
+    //setBackgroundMusic
+    backgroundMusic();
+
+}
+
+
+
+
+function backgroundMusic() {
+
+    playerMusic.loop = true;
+    playerMusic.volume = 0.2;
+    playerMusic.play();
+
+
+    const music = document.getElementById('music-button');
+
+    music.addEventListener("click", (e) => {
+
+        if (isMusicPlaying) {
+            isMusicPlaying = false;
+            music.src = "images/music-off.png";
+            playerMusic.pause();
+
+
+        } else {
+            isMusicPlaying = true;
+            music.src = "images/music-on.png";
+            playerMusic.play();
+
+        }
+
+
+    });
+
+}
+
+function howToPlayButton() {
+    const restartButton = document.getElementById("restart");
+    restartButton.style.display = "none";
+    const howToPlayButton = document.getElementById("howToPlay");
+    howToPlayButton.addEventListener("click", (e) => {
+>>>>>>> main
         const menuBox = document.getElementById("content-menu");
         menuBox.style.display = "block";
         const winnerText = document.getElementById("menu");
         winnerText.style.fontSize = "20px";
         winnerText.innerText = "1) You have to make FOUR consective entires of same COLOR too win.\n 2) Just click on empty circles to make you entry.";
+<<<<<<< HEAD
 
         // Get the element that closes the menuBox
         var closeButton = document.getElementsByClassName("close")[0];
 
         // When the user clicks on (x), close the menuBox
         closeButton.onclick = function () {
+=======
+        // Get the <span> element that closes the menuBox
+        var span = document.getElementsByClassName("close")[0];
+        // When the user clicks on <span> (x), close the menuBox
+        span.onclick = function () {
+>>>>>>> main
             menuBox.style.display = "none";
         }
     });
@@ -130,7 +198,6 @@ function howToPlayButton() {
 
 // set an empty entry in 2d array and then push each entry row in gamePanel 
 function setEmptyCirclesForJS() {
-
     for (let row = 0; row < rows; row++) {
 
         // set it to empty after every ittration because we want to add onlt 7
@@ -139,7 +206,6 @@ function setEmptyCirclesForJS() {
         for (let column = 0; column < columns; column++) {
             emptyCircle[column] = "empty";
         }
-
         //here we push 7 empty element for each row and colum
         gamePanel.push(emptyCircle);
 
@@ -162,12 +228,8 @@ function setAndListenEmptyCircleHtml() {
             initialCircle.id = row.toString() + column.toString();
             initialCircle.classList.add("circle");
             document.getElementById("gamePanel").append(initialCircle);
-
         }
-
     }
-
-
 }
 
 
@@ -177,7 +239,6 @@ function setAndListenEmptyCircleHtml() {
 // circle and then track it through the id and pass
 // id to check if circle is already filled or not
 function actioListnerForEachSelection() {
-
     if (isWinner == false) {
         const target = document.querySelector("div");
         target.addEventListener("click", (e) => {
@@ -187,21 +248,31 @@ function actioListnerForEachSelection() {
             row = trackingFilledBoxRow[column];
             row < 0 ? invalidEntry() : null;
             const circularBox = document.getElementById(row.toString() + column.toString());
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
             // after the click if the user is red then we will update circle with red color
             // otherwise we will update circle with blue color.
             currentPlayer == "red" ? setRedEntry(row, column, circularBox) : setBlueEntry(row, column, circularBox);
             row--;
             trackingFilledBoxRow[column] = row;
+<<<<<<< HEAD
 
             // checkers to check if any four consective entries are matched or not
+=======
+            console.log("traking: " + trackingFilledBoxRow);
+>>>>>>> main
             if (checkDiagonally() == true ||
                 checkReversDiagonally() == true ||
                 checkHorizontally() == true ||
                 checkVertically() == true) {
+<<<<<<< HEAD
 
                 // checker to get our winner w-r-t to its color if
                 // 4 consective entries are matched.
+=======
+>>>>>>> main
                 if (gamePanel[matchedRow][matchedCol] == "red") {
                     showWinnerOnMenu("Congratulations, Red Wins");
                 } else {
@@ -216,7 +287,6 @@ function actioListnerForEachSelection() {
 
 // to update circle with red color.
 function setRedEntry(row, column, circularBox) {
-
     const cpEl = document.getElementById("current-player-text");
     cpEl.style.color = 'blue'
     cpEl.innerText = "Blue's Turn";
@@ -231,7 +301,10 @@ function setRedEntry(row, column, circularBox) {
 
 // to update circle with blue color
 function setBlueEntry(row, column, circularBox) {
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
     const cpEl = document.getElementById("current-player-text");
     cpEl.style.color = 'red';
     console.log("GamePanel: " + gamePanel);
@@ -245,7 +318,6 @@ function setBlueEntry(row, column, circularBox) {
 }
 
 function showWinnerOnMenu(winner) {
-
     document.getElementById("current-player-color").remove();
     document.getElementById("current-player-text").remove();
     const menuBox = document.getElementById("content-menu");
@@ -265,7 +337,10 @@ function showWinnerOnMenu(winner) {
 }
 
 function invalidEntry() {
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
     const menuBox = document.getElementById("content-menu");
     menuBox.style.display = "block";
     const winnerText = document.getElementById("menu");
@@ -280,7 +355,10 @@ function invalidEntry() {
 
 
 function checkHorizontally() {
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < columns - 3; c++) {
             if (gamePanel[r][c] != 'empty') {
@@ -298,7 +376,10 @@ function checkHorizontally() {
 }
 
 function checkVertically() {
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
     for (let c = 0; c < columns; c++) {
         for (let r = 0; r < rows - 3; r++) {
             if (gamePanel[r][c] != 'empty') {
@@ -313,12 +394,9 @@ function checkVertically() {
             }
         }
     }
-
-
 }
 
 function checkDiagonally() {
-
     for (let r = 3; r < rows; r++) {
         for (let c = 0; c < columns - 3; c++) {
             if (gamePanel[r][c] != 'empty') {
@@ -336,9 +414,11 @@ function checkDiagonally() {
     }
 }
 
-
 function checkReversDiagonally() {
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
     for (let r = 0; r < 4; r++) {
         for (let c = 0; c < 4; c++) {
             if (gamePanel[r][c] != 'empty') {
@@ -359,3 +439,7 @@ function checkReversDiagonally() {
 
 init();
 
+<<<<<<< HEAD
+=======
+init();
+>>>>>>> main
