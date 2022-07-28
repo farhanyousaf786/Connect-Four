@@ -31,7 +31,15 @@ let matchedCol = 0;
 <<<<<<< HEAD
 =======
 // Background Music initilization
-const playerMusic = new Audio('music/bg-music.mp3');
+const bgMusic = new Audio('music/bg-music.mp3');
+const forRed = new Audio('music/red-turn.wav');
+const forBlue = new Audio('music/blue-turn.wav');
+const error = new Audio('music/error.wav');
+const howToButton = new Audio('music/popUpMenu.wav');
+const winningEffect = new Audio('music/winningEffect.wav');
+
+
+
 
 // varible that will trigger to true as we find our winner
 let isMusicPlaying = true;
@@ -140,9 +148,9 @@ function howToPlayButton() {
 
 function backgroundMusic() {
 
-    playerMusic.loop = true;
-    playerMusic.volume = 0.2;
-    playerMusic.play();
+    bgMusic.loop = true;
+    bgMusic.volume = 0.1;
+    bgMusic.play();
 
 
     const music = document.getElementById('music-button');
@@ -152,13 +160,13 @@ function backgroundMusic() {
         if (isMusicPlaying) {
             isMusicPlaying = false;
             music.src = "images/music-off.png";
-            playerMusic.pause();
+            bgMusic.pause();
 
 
         } else {
             isMusicPlaying = true;
             music.src = "images/music-on.png";
-            playerMusic.play();
+            bgMusic.play();
 
         }
 
@@ -170,8 +178,14 @@ function backgroundMusic() {
 function howToPlayButton() {
     const restartButton = document.getElementById("restart");
     restartButton.style.display = "none";
+
     const howToPlayButton = document.getElementById("howToPlay");
     howToPlayButton.addEventListener("click", (e) => {
+<<<<<<< HEAD
+>>>>>>> main
+=======
+        howToButton.volume = 0.9
+        howToButton.play();
 >>>>>>> main
         const menuBox = document.getElementById("content-menu");
         menuBox.style.display = "block";
@@ -192,6 +206,7 @@ function howToPlayButton() {
         span.onclick = function () {
 >>>>>>> main
             menuBox.style.display = "none";
+
         }
     });
 }
@@ -242,7 +257,7 @@ function actioListnerForEachSelection() {
     if (isWinner == false) {
         const target = document.querySelector("div");
         target.addEventListener("click", (e) => {
-            console.log("target = " + e.target.id);
+
             let row = e.target.id.charAt(0);
             let column = e.target.id.charAt(1);
             row = trackingFilledBoxRow[column];
@@ -258,10 +273,14 @@ function actioListnerForEachSelection() {
             row--;
             trackingFilledBoxRow[column] = row;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
             // checkers to check if any four consective entries are matched or not
 =======
             console.log("traking: " + trackingFilledBoxRow);
+>>>>>>> main
+=======
+
 >>>>>>> main
             if (checkDiagonally() == true ||
                 checkReversDiagonally() == true ||
@@ -296,6 +315,8 @@ function setRedEntry(row, column, circularBox) {
     currentPlayer = "blue";
     const currentPlayerColor = document.getElementById("current-player-color");
     currentPlayerColor.style.backgroundColor = "#0003df";
+    forRed.volume = 0.2;
+    forRed.play();
 }
 
 
@@ -315,9 +336,14 @@ function setBlueEntry(row, column, circularBox) {
     currentPlayer = "red";
     const currentPlayerColor = document.getElementById("current-player-color");
     currentPlayerColor.style.backgroundColor = "#fe0000";
+
+
+    forBlue.volume = 0.2;
+    forBlue.play();
 }
 
 function showWinnerOnMenu(winner) {
+    
     document.getElementById("current-player-color").remove();
     document.getElementById("current-player-text").remove();
     const menuBox = document.getElementById("content-menu");
@@ -325,6 +351,8 @@ function showWinnerOnMenu(winner) {
     const winnerText = document.getElementById("menu");
     winnerText.innerText = winner;
     var span = document.getElementsByClassName("close")[0];
+    winningEffect.volume = 0.5
+    winningEffect.play();
     span.onclick = function () {
         menuBox.style.display = "none";
     }
@@ -338,8 +366,13 @@ function showWinnerOnMenu(winner) {
 
 function invalidEntry() {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+>>>>>>> main
+=======
+    error.volume = 0.9
+    error.play();
 >>>>>>> main
     const menuBox = document.getElementById("content-menu");
     menuBox.style.display = "block";
