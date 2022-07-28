@@ -28,6 +28,13 @@ let matchedRow = 0;
 // will update when we find our winner at specified column
 let matchedCol = 0;
 
+// Background Music initilization
+const playerMusic = new Audio('music/bg-music.mp3');
+
+// varible that will trigger to true as we find our winner
+let isMusicPlaying = true;
+
+
 /*
 init is a defual function that run when screen load.
 he inner functions in init are the functionswhich control
@@ -35,7 +42,9 @@ our defual values like # of columns or empty 2d array
 along with empty circles.
 */
 
+
 function init() {
+
     setInitialAttributes();
     setEmptyCirclesForJS();
     setAndListenEmptyCircleHtml();
@@ -94,9 +103,43 @@ function setInitialAttributes() {
 
     // set how to play button
     howToPlayButton();
+
+    //setBackgroundMusic
+    backgroundMusic();
+
 }
 
 
+
+
+function backgroundMusic() {
+
+    playerMusic.loop = true;
+    playerMusic.volume = 0.2;
+    playerMusic.play();
+
+
+    const music = document.getElementById('music-button');
+
+    music.addEventListener("click", (e) => {
+
+        if (isMusicPlaying) {
+            isMusicPlaying = false;
+            music.src = "images/music-off.png";
+            playerMusic.pause();
+
+
+        } else {
+            isMusicPlaying = true;
+            music.src = "images/music-on.png";
+            playerMusic.play();
+
+        }
+
+
+    });
+
+}
 
 function howToPlayButton() {
     const restartButton = document.getElementById("restart");
