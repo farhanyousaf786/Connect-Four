@@ -481,3 +481,4 @@ function checkReversDiagonally() {
 
 
 init();
+
