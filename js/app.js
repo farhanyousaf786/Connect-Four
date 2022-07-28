@@ -380,11 +380,7 @@ function showWinnerOnMenu(winner) {
         location.reload();
     }
 
-
 }
-
-
-
 
 function invalidEntry() {
 
@@ -399,7 +395,7 @@ function invalidEntry() {
 
     winnerText.style.fontSize = "22px";
 
-    winnerText.innerText = "Alert!! \n -> This slot is already taken, Please chose an empty slot (Circle).";
+    winnerText.innerText = "Alert! \n -> This slot is already taken, Please chose an empty slot (Circle).";
 
     var span = document.getElementsByClassName("close")[0];
 
