@@ -127,7 +127,41 @@ function setInitialAttributes() {
 
     console.log("traking: " + trackingFilledBoxRow);
 
+
+    // set how to play button
+    howToPlay();
+
+
 }
+
+
+
+function howToPlay() {
+
+
+    const howToPlayButton = document.querySelector("howToPlay");
+
+    // howToPlayButton.addEventListener("click", (e) => {});
+
+    // const menuBox = document.getElementById("content-menu");
+
+    // menuBox.style.display = "block";
+
+    // const winnerText = document.getElementById("menu");
+
+    // winnerText.innerText = "This slot is already taken, Please chose an empty slot (Circle).";
+
+    // // Get the <span> element that closes the menuBox
+    // var span = document.getElementsByClassName("close")[0];
+
+    // // When the user clicks on <span> (x), close the menuBox
+    // span.onclick = function () {
+    //     menuBox.style.display = "none";
+    // }
+
+
+}
+
 
 
 
