@@ -167,7 +167,7 @@ function howToPlayButton() {
         menuBox.style.display = "block";
         const winnerText = document.getElementById("menu");
         winnerText.style.fontSize = "20px";
-        winnerText.innerText = "1) You have to make FOUR consective entires of same COLOR too win.\n 2) Just click on empty circles to make you entry.";
+        winnerText.innerText = "1) You have to make FOUR consective entires of same COLOR to win.\n 2) Just click on empty circles to make your entry.";
         // Get the <span> element that closes the menuBox
         var span = document.getElementsByClassName("close")[0];
         // When the user clicks on <span> (x), close the menuBox
