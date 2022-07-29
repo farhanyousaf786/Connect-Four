@@ -34,7 +34,7 @@ Connect Four is a two-player strategy game played on a 7-column by 7-row board. 
 * Flexible board (User will select # of Column-Row by himslef).
 * Different background animation.
 * Sound effects (According to animation).
-* Morethan 3 themes.
+* More than 3 themes.
 * Save user data (Like how many time they wins)
 
 

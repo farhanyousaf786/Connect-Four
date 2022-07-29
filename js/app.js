@@ -1,4 +1,4 @@
-//---------------------------------<Constants>--------------------------------//
+//----------------------------------------<Constants>---------------------------------------//
 
 // Background Music initilization
 const bgMusic = new Audio('music/bg-music.mp3');
@@ -20,7 +20,7 @@ const columnToTrack = 7;
 const trackingFilledBox = [];
 
 
-//---------------------------------<Variables>--------------------------------//
+//----------------------------------------<Variables>---------------------------------------//
 
 // varible that will trigger to true as we find our winner
 let isWinner = false;
@@ -44,17 +44,13 @@ let matchedCol = 0;
 let isMusicPlaying = false;
 
 
-
-
-//---------------------------------<Init Functions>--------------------------------//
-
+//-------------------------------------<Init Functions>--------------------------------------//
 /*
 init is a defual function that run when screen load.
 he inner functions in init are the functionswhich control
 our defual values like # of columns or empty 2d array
 along with empty circles.
 */
-
 function init() {
 
     setInitialAttributes();
@@ -64,38 +60,31 @@ function init() {
 }
 
 
-//---------------------------------<All Functions>--------------------------------//
+//--------------------------------------<All Functions>--------------------------------------//
 
-
-
-
+//this function will create our basic U-I elements
 function setInitialAttributes() {
 
     // this line will set our body elements at center
     document.body.style.textAlign = "center";
 
-    /* 
-    this block is to create our empty gamePanel element 
-    and to append it to col1 element
-    */
+
+    //this block is to create our empty gamePanel element 
+    //and to append it to col1 element
+
     const panel = document.createElement('div');
     panel.id = "gamePanel";
     const col1 = document.getElementById("col1");
     col1.appendChild(panel);
 
-    /* 
-        create a new div element to show
-        current player's color.
-    */
+    // create a new div element to show
+    // current player's color.
     const currentPlayerColor = document.createElement("div");
     currentPlayerColor.id = "current-player-color";
     currentPlayerColor.innerText.backgroundColor = "white";
 
-    /* 
-      create a new div element to show
-      current player's name if it is blue or red.
-    */
-
+    //create a new div element to show
+    //current player's name if it is blue or red.
     const currentPlayerText = document.createElement("div");
     currentPlayerText.id = "current-player-text";
     currentPlayerText.innerText = "Blue's Turn";
@@ -105,10 +94,10 @@ function setInitialAttributes() {
     currentPlayerText.style.borderRadius = "8px";
     currentPlayerText.style.border = "3px solid palevioletred";
 
-    /*
-    Append both element currentPlayerColor & currentPlayerText into
-    an exisitng element name col2
-    */
+
+    //Append both element currentPlayerColor & currentPlayerText into
+    //an exisitng element name col2
+
     const col2 = document.getElementById("col2");
     col2.appendChild(currentPlayerColor);
     col2.appendChild(currentPlayerText);
@@ -130,6 +119,8 @@ function setInitialAttributes() {
 
 }
 
+
+// this functioncontrol backgroundMusic and make it off and on
 function backgroundMusic() {
 
     bgMusic.loop = true;
@@ -149,12 +140,11 @@ function backgroundMusic() {
             bgMusic.play();
 
         }
-
-
     });
-
 }
 
+   // this function create an element of "How to playe" button and set instructions
+  // dimentions of instruction
 function howToPlayButton() {
     const restartButton = document.getElementById("restart");
     restartButton.style.display = "none";
@@ -167,7 +157,7 @@ function howToPlayButton() {
         menuBox.style.display = "block";
         const winnerText = document.getElementById("menu");
         winnerText.style.fontSize = "20px";
-        winnerText.innerText = "1) You have to make FOUR consective entires of same COLOR too win.\n 2) Just click on empty circles to make you entry.";
+        winnerText.innerText = "1) You have to make FOUR consective entires of same COLOR to win.\n 2) Just click on empty circles to make your entry.";
         // Get the <span> element that closes the menuBox
         var span = document.getElementsByClassName("close")[0];
         // When the user clicks on <span> (x), close the menuBox
@@ -177,6 +167,7 @@ function howToPlayButton() {
         }
     });
 }
+
 
 // set an empty entry in 2d array and then push each entry row in gamePanel 
 function setEmptySlotsForJS() {
@@ -195,9 +186,7 @@ function setEmptySlotsForJS() {
 }
 
 // set an empty circle in 2d array and then push each entry row in gamePanel 
-
 function setAndListenEmptyCircleHtml() {
-
     for (let row = 0; row < rows; row++) {
         for (let column = 0; column < columns; column++) {
 
@@ -220,15 +209,15 @@ function setAndListenEmptyCircleHtml() {
 // id to check if circle is already filled or not
 function actioListnerForEachSelection() {
     if (isWinner == false) {
-
         const target = document.querySelector("div");
         target.addEventListener("click", (e) => {
-
             let row = e.target.id.charAt(0);
             let column = e.target.id.charAt(1);
             row = trackingFilledBox[column];
+            console.log("trackingFilledBox[column] = " + trackingFilledBox[column]);
             row < 0 ? invalidEntry() : null;
             const circularBox = document.getElementById(row.toString() + column.toString());
+            
             // after the click if the user is red then we will update circle with red color
             // otherwise we will update circle with blue color.
             currentPlayer == "red" ? setRedEntry(row, column, circularBox) : setBlueEntry(row, column, circularBox);
@@ -382,7 +371,7 @@ function checkReversDiagonally() {
                     gamePanel[row3][col3] == gamePanel[row4][col4]) {
                     matchedRow = r;
                     matchedCol = c;
-                    
+
                     return true;
                 }
 
