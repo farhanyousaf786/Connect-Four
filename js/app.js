@@ -56,6 +56,7 @@ along with empty circles.
 */
 
 function init() {
+
     setInitialAttributes();
     setEmptySlotsForJS();
     setAndListenEmptyCircleHtml();
@@ -64,6 +65,9 @@ function init() {
 
 
 //---------------------------------<All Functions>--------------------------------//
+
+
+
 
 function setInitialAttributes() {
 
@@ -95,8 +99,11 @@ function setInitialAttributes() {
     const currentPlayerText = document.createElement("div");
     currentPlayerText.id = "current-player-text";
     currentPlayerText.innerText = "Blue's Turn";
-    currentPlayerText.style.fontSize = "20px";
+    currentPlayerText.style.fontSize = "17px";
     currentPlayerText.style.color = "blue";
+    currentPlayerText.style.background = "white";
+    currentPlayerText.style.borderRadius = "8px";
+    currentPlayerText.style.border = "5px solid pink";
 
     /*
     Append both element currentPlayerColor & currentPlayerText into
@@ -136,8 +143,6 @@ function backgroundMusic() {
             isMusicPlaying = false;
             music.src = "images/music-off.png";
             bgMusic.pause();
-
-
         } else {
             isMusicPlaying = true;
             music.src = "images/music-on.png";
