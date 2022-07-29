@@ -2,8 +2,6 @@ body {
 
     background-image: url('https://media.giphy.com/media/BHNfhgU63qrks/giphy.gif');
     background-size: cover;
-    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.5);
-    height: 100vh;
     padding: 0;
     margin: 0;
     font-family: 'Kanit', sans-serif;
@@ -57,20 +55,13 @@ body {
     margin-bottom: 10px;
 }
 
+/* main table */
 #table {
     margin: auto;
     padding-left: 13%;
 }
 
-
-#logoImage {
-    padding-right: 10%;
-}
-
-#howToPlay {
-    padding-right: 10%;
-}
-
+/* col2 of main table */
 #col2 {
     width: 200px;
 
@@ -78,10 +69,20 @@ body {
     padding-left: 10%;
 }
 
+/* logo image */
 #logoImage {
+    padding-right: 10%;
     margin: 1%;
+
 }
 
+/* how to play image */
+#howToPlay {
+    padding-right: 10%;
+}
+
+
+/* menu box */
 .box {
     display: none;
     position: fixed;
@@ -96,7 +97,7 @@ body {
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-/* Modal Content */
+/* box Content */
 .box-content {
     background-color: #fefefe;
     margin: auto;
@@ -124,6 +125,7 @@ body {
     cursor: pointer;
 }
 
+/* Resetart Button */
 .restart {
     display: none;
     background-color: #4CAF50;
