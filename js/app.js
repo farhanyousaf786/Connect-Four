@@ -28,8 +28,6 @@ let matchedRow = 0;
 // will update when we find our winner at specified column
 let matchedCol = 0;
 
-<<<<<<< HEAD
-=======
 // Background Music initilization
 const bgMusic = new Audio('music/bg-music.mp3');
 const forRed = new Audio('music/red-turn.wav');
@@ -44,7 +42,6 @@ const winningEffect = new Audio('music/winningEffect.wav');
 // varible that will trigger to true as we find our winner
 let isMusicPlaying = true;
 
->>>>>>> main
 
 /*
 init is a defual function that run when screen load.
@@ -52,11 +49,8 @@ he inner functions in init are the functionswhich control
 our defual values like # of columns or empty 2d array
 along with empty circles.
 */
-<<<<<<< HEAD
-=======
 
 
->>>>>>> main
 function init() {
     setInitialAttributes();
     setEmptyCirclesForJS();
