@@ -17,7 +17,7 @@ const columns = 7;
 const columnToTrack = 7;
 
 // this array will store counting of occopied entries in our panel
-const trackingFilledBoxRow = [];
+const trackingFilledBox = [];
 
 
 //---------------------------------<Variables>--------------------------------//
@@ -103,7 +103,7 @@ function setInitialAttributes() {
     currentPlayerText.style.color = "blue";
     currentPlayerText.style.background = "white";
     currentPlayerText.style.borderRadius = "8px";
-    currentPlayerText.style.border = "5px solid pink";
+    currentPlayerText.style.border = "3px solid palevioletred";
 
     /*
     Append both element currentPlayerColor & currentPlayerText into
@@ -114,12 +114,12 @@ function setInitialAttributes() {
     col2.appendChild(currentPlayerText);
 
     /* 
-    this loop is to push element in trackingFilledBoxRow array
+    this loop is to push element in trackingFilledBox array
     it will fill array with 6 to each element. because when we 
     track row's gravity later, we will start from 0-6 that make it 7.
     */
     for (let i = 0; i <= columnToTrack - 1; i++) {
-        trackingFilledBoxRow.push(columnToTrack - 1);
+        trackingFilledBox.push(columnToTrack - 1);
     }
 
     // set how to play button
@@ -134,7 +134,7 @@ function backgroundMusic() {
 
     bgMusic.loop = true;
     bgMusic.volume = 0.1;
-    
+
     const music = document.getElementById('music-button');
 
     music.addEventListener("click", (e) => {
@@ -202,7 +202,7 @@ function setAndListenEmptyCircleHtml() {
         for (let column = 0; column < columns; column++) {
 
             // this is an empty circle we will update it with respect to the
-            // gamePanel and trackingFilledBoxRow
+            // gamePanel and trackingFilledBox
             const initialCircle = document.createElement("div");
 
             // set every id for each element of game panel different 
@@ -219,29 +219,34 @@ function setAndListenEmptyCircleHtml() {
 // circle and then track it through the id and pass
 // id to check if circle is already filled or not
 function actioListnerForEachSelection() {
+
     if (isWinner == false) {
 
         const target = document.querySelector("div");
         target.addEventListener("click", (e) => {
+
             let row = e.target.id.charAt(0);
             let column = e.target.id.charAt(1);
-            row = trackingFilledBoxRow[column];
+
+            row = trackingFilledBox[column];
+
+            console.log("trackingFilledBox[column] = " + trackingFilledBox[column]);
+
             row < 0 ? invalidEntry() : null;
             const circularBox = document.getElementById(row.toString() + column.toString());
             // after the click if the user is red then we will update circle with red color
             // otherwise we will update circle with blue color.
             currentPlayer == "red" ? setRedEntry(row, column, circularBox) : setBlueEntry(row, column, circularBox);
             row--;
-            trackingFilledBoxRow[column] = row;
-
+            trackingFilledBox[column] = row;
             if (checkDiagonally() == true ||
                 checkReversDiagonally() == true ||
                 checkHorizontally() == true ||
                 checkVertically() == true) {
                 if (gamePanel[matchedRow][matchedCol] == "red") {
-                    showWinnerOnMenu("Congratulations, Red Wins");
+                    showWinnerOnMenu("Hurray!!, Red Wins");
                 } else {
-                    showWinnerOnMenu("Congratulations, Blue Wins");
+                    showWinnerOnMenu("Hurray!!, Blue Wins");
                 }
                 isWinner = true;
             }
@@ -255,7 +260,7 @@ function setRedEntry(row, column, circularBox) {
     cpEl.style.color = 'blue'
     cpEl.innerText = "Blue's Turn";
     gamePanel[row][column] = "red";
-    circularBox.classList.add(gamePanel[row][column]);
+    circularBox.classList.add("red");
     circularBox.style.backgroundColor = "#fe0000"
     currentPlayer = "blue";
     const currentPlayerColor = document.getElementById("current-player-color");
@@ -268,16 +273,13 @@ function setRedEntry(row, column, circularBox) {
 function setBlueEntry(row, column, circularBox) {
     const cpEl = document.getElementById("current-player-text");
     cpEl.style.color = 'red';
-    console.log("GamePanel: " + gamePanel);
     cpEl.innerText = "Red's Turn";
     gamePanel[row][column] = "blue";
-    circularBox.classList.add(gamePanel[row][column]);
+    circularBox.classList.add("blue");
     circularBox.style.backgroundColor = "#0003df ";
     currentPlayer = "red";
     const currentPlayerColor = document.getElementById("current-player-color");
     currentPlayerColor.style.backgroundColor = "#fe0000";
-
-
     forBlue.volume = 0.2;
     forBlue.play();
 }
@@ -290,6 +292,7 @@ function showWinnerOnMenu(winner) {
     const menuBox = document.getElementById("content-menu");
     menuBox.style.display = "block";
     const winnerText = document.getElementById("menu");
+    winnerText.style.color = "#ab00a3";
     winnerText.innerText = winner;
     var span = document.getElementsByClassName("close")[0];
     winningEffect.volume = 0.5
@@ -384,6 +387,7 @@ function checkReversDiagonally() {
                     gamePanel[row3][col3] == gamePanel[row4][col4]) {
                     matchedRow = r;
                     matchedCol = c;
+
                     return true;
                 }
 
